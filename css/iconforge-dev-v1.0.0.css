@@ -19,6 +19,175 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.if-dev-haskell:before {
+  content: "\e903";
+}
+.if-dev-solidity:before {
+  content: "\e904";
+}
+.if-dev-ionic:before {
+  content: "\e905";
+}
+.if-dev-bitbucket:before {
+  content: "\e906";
+}
+.if-dev-webgl:before {
+  content: "\e907";
+}
+.if-dev-graphql:before {
+  content: "\e908";
+}
+.if-dev-jupyter:before {
+  content: "\e909";
+}
+.if-dev-webhook:before {
+  content: "\e90a";
+}
+.if-dev-redux:before {
+  content: "\e90b";
+}
+.if-dev-sass:before {
+  content: "\e90c";
+}
+.if-dev-terraform:before {
+  content: "\e90d";
+}
+.if-dev-docker:before {
+  content: "\e90e";
+}
+.if-dev-bootstrap .path1:before {
+  content: "\e90f";
+  color: rgb(0, 0, 0);
+}
+.if-dev-bootstrap .path2:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.if-dev-django:before {
+  content: "\e911";
+}
+.if-dev-gitlab:before {
+  content: "\e912";
+}
+.if-dev-github:before {
+  content: "\e913";
+}
+.if-dev-git:before {
+  content: "\e914";
+}
+.if-dev-node-js:before {
+  content: "\e915";
+}
+.if-dev-sqlite:before {
+  content: "\e916";
+}
+.if-dev-postgresql:before {
+  content: "\e917";
+}
+.if-dev-mysql:before {
+  content: "\e918";
+}
+.if-dev-golang:before {
+  content: "\e919";
+}
+.if-dev-rust:before {
+  content: "\e91a";
+}
+.if-dev-dart:before {
+  content: "\e91b";
+}
+.if-dev-flask:before {
+  content: "\e91c";
+}
+.if-dev-python:before {
+  content: "\e91d";
+}
+.if-dev-express:before {
+  content: "\e91e";
+}
+.if-dev-lua:before {
+  content: "\e91f";
+}
+.if-dev-ruby:before {
+  content: "\e920";
+}
+.if-dev-php:before {
+  content: "\e921";
+}
+.if-dev-kotlin:before {
+  content: "\e922";
+}
+.if-dev-flutter:before {
+  content: "\e923";
+}
+.if-dev-swift:before {
+  content: "\e924";
+}
+.if-dev-java:before {
+  content: "\e925";
+}
+.if-dev-react:before {
+  content: "\e926";
+}
+.if-dev-angularjs:before {
+  content: "\e927";
+}
+.if-dev-jquery:before {
+  content: "\e928";
+}
+.if-dev-vue .path1:before {
+  content: "\e929";
+  color: rgb(0, 0, 0);
+}
+.if-dev-vue .path2:before {
+  content: "\e92a";
+  margin-left: -1em;
+  color: rgb(69, 90, 100);
+}
+.if-dev-typescript:before {
+  content: "\e92b";
+}
+.if-dev-csharp:before {
+  content: "\e92c";
+}
+.if-dev-cplus:before {
+  content: "\e92d";
+}
+.if-dev-c .path1:before {
+  content: "\e92e";
+  color: rgb(0, 0, 0);
+}
+.if-dev-c .path2:before {
+  content: "\e92f";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.if-dev-c .path3:before {
+  content: "\e930";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.if-dev-c .path4:before {
+  content: "\e931";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.if-dev-c .path5:before {
+  content: "\e932";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.0500;
+}
+.if-dev-c .path6:before {
+  content: "\e933";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.0700;
+}
+.if-dev-tailwindcss:before {
+  content: "\e934";
+}
 .if-dev-javascript:before {
   content: "\e900";
 }
