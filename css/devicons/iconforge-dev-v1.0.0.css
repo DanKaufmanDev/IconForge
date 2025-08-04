@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'IconForge';
-  src:  url('../fonts/iconforge-dev-v1.0.0.woff2') format('woff2'),
-        url('../fonts/iconforge-dev-v1.0.0.woff') format('woff');
+  src:  url('../../fonts/devicons/iconforge-dev-v1.0.0.woff2') format('woff2'),
+        url('../../fonts/devicons/iconforge-dev-v1.0.0.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -19,6 +19,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.if-dev-nuxtjs:before {
+  content: "\e910";
+}
+.if-dev-nextjs:before {
+  content: "\e92a";
+}
 .if-dev-haskell:before {
   content: "\e903";
 }
@@ -55,14 +61,8 @@
 .if-dev-docker:before {
   content: "\e90e";
 }
-.if-dev-bootstrap .path1:before {
+.if-dev-bootstrap:before {
   content: "\e90f";
-  color: rgb(0, 0, 0);
-}
-.if-dev-bootstrap .path2:before {
-  content: "\e910";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
 }
 .if-dev-django:before {
   content: "\e911";
@@ -76,7 +76,7 @@
 .if-dev-git:before {
   content: "\e914";
 }
-.if-dev-node-js:before {
+.if-dev-nodejs:before {
   content: "\e915";
 }
 .if-dev-sqlite:before {
@@ -136,14 +136,8 @@
 .if-dev-jquery:before {
   content: "\e928";
 }
-.if-dev-vue .path1:before {
+.if-dev-vuejs:before {
   content: "\e929";
-  color: rgb(0, 0, 0);
-}
-.if-dev-vue .path2:before {
-  content: "\e92a";
-  margin-left: -1em;
-  color: rgb(69, 90, 100);
 }
 .if-dev-typescript:before {
   content: "\e92b";
@@ -154,36 +148,8 @@
 .if-dev-cplus:before {
   content: "\e92d";
 }
-.if-dev-c .path1:before {
+.if-dev-c:before {
   content: "\e92e";
-  color: rgb(0, 0, 0);
-}
-.if-dev-c .path2:before {
-  content: "\e92f";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.if-dev-c .path3:before {
-  content: "\e930";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.if-dev-c .path4:before {
-  content: "\e931";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.if-dev-c .path5:before {
-  content: "\e932";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-  opacity: 0.0500;
-}
-.if-dev-c .path6:before {
-  content: "\e933";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-  opacity: 0.0700;
 }
 .if-dev-tailwindcss:before {
   content: "\e934";
