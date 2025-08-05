@@ -21,11 +21,11 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e900";
 }
-.if-addcircle:before {
+.if-add-circle:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e901";
 }
-.if-addeye:before {
+.if-add-eye:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e902";
 }
@@ -37,7 +37,7 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e904";
 }
-.if-attachmentupload:before {
+.if-attachment-upload:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e905";
 }
@@ -53,7 +53,7 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e908";
 }
-.if-closesmall:before {
+.if-close-small:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e909";
 }
@@ -65,7 +65,7 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e90b";
 }
-.if-eyecancelled:before {
+.if-eye-cancelled:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e90c";
 }
@@ -85,19 +85,19 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e910";
 }
-.if-mouseclick:before {
+.if-mouse-click:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e911";
 }
-.if-mouseselect:before {
+.if-mouse-select:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e912";
 }
-.if-openexternal:before {
+.if-open-external:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e913";
 }
-.if-openfile:before {
+.if-open-file:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e914";
 }
@@ -149,7 +149,7 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e920";
 }
-.if-removeeye:before {
+.if-remove-eye:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e921";
 }
@@ -169,7 +169,7 @@
     font-family: 'IconForgeUiAction' !important;
   content: "\e925";
 }
-.if-staradd:before {
+.if-star-add:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e926";
 }

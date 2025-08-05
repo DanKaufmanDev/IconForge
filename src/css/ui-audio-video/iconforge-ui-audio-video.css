@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'IconForgeUiAudioVideo';
+  src:  url('../../icons/ui-audio-video/iconforge-ui-audio-video.woff2') format('woff2'),
+    url('../../icons/ui-audio-video/iconforge-ui-audio-video.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiAudioVideo' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-audio-description-alt:before {
+  content: "\e900";
+}
+.if-audio-description:before {
+  content: "\e901";
+}
+.if-microphone:before {
+  content: "\e902";
+}
+.if-pause-circle:before {
+  content: "\e903";
+}
+.if-pause:before {
+  content: "\e904";
+}
+.if-play-circle:before {
+  content: "\e905";
+}
+.if-play:before {
+  content: "\e906";
+}
+.if-radiowaves-off:before {
+  content: "\e907";
+}
+.if-radiowaves:before {
+  content: "\e908";
+}
+.if-skip-back:before {
+  content: "\e909";
+}
+.if-skip-next:before {
+  content: "\e90a";
+}
+.if-sound-loud:before {
+  content: "\e90b";
+}
+.if-sound-mute:before {
+  content: "\e90c";
+}
+.if-sound-off:before {
+  content: "\e90d";
+}
+.if-sound-quiet:before {
+  content: "\e90e";
+}
+.if-stop-circle:before {
+  content: "\e90f";
+}
+.if-stop:before {
+  content: "\e910";
+}
+.if-waveform:before {
+  content: "\e911";
+}
