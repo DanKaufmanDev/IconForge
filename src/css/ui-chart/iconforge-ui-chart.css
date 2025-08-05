@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'IconForgeUiChart';
+  src:  url('../../icons/ui-chart/iconforge-ui-audio-video.woff2') format('woff2'),
+    url('../../icons/ui-chart/iconforge-ui-audio-video.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiChart' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-average:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e900";
+}
+.if-capacity:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e901";
+}
+.if-chart-bar:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e902";
+}
+.if-chart-connector:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e903";
+}
+.if-chart-cursor:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e904";
+}
+.if-chart-curve-linear:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e905";
+}
+.if-chart-curve-spline:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e906";
+}
+.if-chart-curve-stepped:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e907";
+}
+.if-chart-gauge:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e908";
+}
+.if-chart-labels:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e909";
+}
+.if-chart-radar:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e90a";
+}
+.if-chart-reportbar:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e90b";
+}
+.if-chart-reportline:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e90c";
+}
+.if-pi-diagram:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e90d";
+}
+.if-pie-chart:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e90e";
+}
+.if-polar-plot:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e90f";
+}
+.if-scatterplot:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e910";
+}
+.if-threshold-cancelled:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e911";
+}
+.if-threshold-off:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e912";
+}
+.if-threshold-on:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e913";
+}
+.if-trend:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e914";
+}
+.if-x-axis-settings:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e915";
+}
+.if-y-axis-settings:before {
+    font-family: 'IconForgeUiChart' !important;
+  content: "\e916";
+}

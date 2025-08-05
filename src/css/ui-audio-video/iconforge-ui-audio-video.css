@@ -20,56 +20,74 @@
 }
 
 .if-audio-description-alt:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e900";
 }
 .if-audio-description:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e901";
 }
 .if-microphone:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e902";
 }
 .if-pause-circle:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e903";
 }
 .if-pause:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e904";
 }
 .if-play-circle:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e905";
 }
 .if-play:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e906";
 }
 .if-radiowaves-off:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e907";
 }
 .if-radiowaves:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e908";
 }
 .if-skip-back:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e909";
 }
 .if-skip-next:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e90a";
 }
 .if-sound-loud:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e90b";
 }
 .if-sound-mute:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e90c";
 }
 .if-sound-off:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e90d";
 }
 .if-sound-quiet:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e90e";
 }
 .if-stop-circle:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e90f";
 }
 .if-stop:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e910";
 }
 .if-waveform:before {
+    font-family: 'IconForgeUiAudioVideo' !important;
   content: "\e911";
 }
