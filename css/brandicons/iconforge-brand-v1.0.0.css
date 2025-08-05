@@ -1,0 +1,237 @@
+@font-face {
+  font-family: 'IconForge';
+  src:  url('../../fonts/brandicons/iconforge-brand-v1.0.0.woff2') format('woff2'),
+        url('../../fonts/brandicons/iconforge-brand-v1.0.0.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-brand-"], [class*=" if-brand-"] {
+  font-family: 'IconForge' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-brand-zoom:before {
+  content: "\e900";
+}
+.if-brand-zillow:before {
+  content: "\e901";
+}
+.if-brand-ytmusic:before {
+  content: "\e902";
+}
+.if-brand-yahoo:before {
+  content: "\e903";
+}
+.if-brand-xbox:before {
+  content: "\e904";
+}
+.if-brand-wish:before {
+  content: "\e905";
+}
+.if-brand-wendys:before {
+  content: "\e906";
+}
+.if-brand-vlc:before {
+  content: "\e907";
+}
+.if-brand-venmo:before {
+  content: "\e908";
+}
+.if-brand-tinder:before {
+  content: "\e909";
+}
+.if-brand-tidal:before {
+  content: "\e90a";
+}
+.if-brand-tesla:before {
+  content: "\e90b";
+}
+.if-brand-steam:before {
+  content: "\e90c";
+}
+.if-brand-starbucks:before {
+  content: "\e90d";
+}
+.if-brand-square:before {
+  content: "\e90e";
+}
+.if-brand-sprite:before {
+  content: "\e90f";
+}
+.if-brand-spotify:before {
+  content: "\e910";
+}
+.if-brand-soundcloud:before {
+  content: "\e911";
+}
+.if-brand-skype:before {
+  content: "\e912";
+}
+.if-brand-rss:before {
+  content: "\e913";
+}
+.if-brand-playstation:before {
+  content: "\e914";
+}
+.if-brand-origin:before {
+  content: "\e915";
+}
+.if-brand-oracle:before {
+  content: "\e916";
+}
+.if-brand-of:before {
+  content: "\e917";
+}
+.if-brand-nzxt:before {
+  content: "\e918";
+}
+.if-brand-nike:before {
+  content: "\e919";
+}
+.if-brand-music:before {
+  content: "\e91a";
+}
+.if-brand-mcdonalds:before {
+  content: "\e91b";
+}
+.if-brand-lyft:before {
+  content: "\e91c";
+}
+.if-brand-logitech:before {
+  content: "\e91d";
+}
+.if-brand-logi:before {
+  content: "\e91e";
+}
+.if-brand-lg:before {
+  content: "\e91f";
+}
+.if-brand-lego:before {
+  content: "\e920";
+}
+.if-brand-jordan:before {
+  content: "\e921";
+}
+.if-brand-ios:before {
+  content: "\e922";
+}
+.if-brand-ibm:before {
+  content: "\e923";
+}
+.if-brand-hp:before {
+  content: "\e924";
+}
+.if-brand-hollister:before {
+  content: "\e925";
+}
+.if-brand-hinge:before {
+  content: "\e926";
+}
+.if-brand-hf:before {
+  content: "\e927";
+}
+.if-brand-handm:before {
+  content: "\e928";
+}
+.if-brand-gucci:before {
+  content: "\e929";
+}
+.if-brand-gpay:before {
+  content: "\e92a";
+}
+.if-brand-google:before {
+  content: "\e92b";
+}
+.if-brand-ge:before {
+  content: "\e92c";
+}
+.if-brand-figma:before {
+  content: "\e92d";
+}
+.if-brand-etsy:before {
+  content: "\e92e";
+}
+.if-brand-electron:before {
+  content: "\e92f";
+}
+.if-brand-ebay:before {
+  content: "\e930";
+}
+.if-brand-ea:before {
+  content: "\e931";
+}
+.if-brand-dell:before {
+  content: "\e932";
+}
+.if-brand-cocacola:before {
+  content: "\e933";
+}
+.if-brand-cnn:before {
+  content: "\e934";
+}
+.if-brand-cloudflare:before {
+  content: "\e935";
+}
+.if-brand-cat:before {
+  content: "\e936";
+}
+.if-brand-canva:before {
+  content: "\e937";
+}
+.if-brand-burgerking:before {
+  content: "\e938";
+}
+.if-brand-blender:before {
+  content: "\e939";
+}
+.if-brand-blackberry:before {
+  content: "\e93a";
+}
+.if-brand-aws:before {
+  content: "\e93b";
+}
+.if-brand-asus:before {
+  content: "\e93c";
+}
+.if-brand-aseprite:before {
+  content: "\e93d";
+}
+.if-brand-apple:before {
+  content: "\e93e";
+}
+.if-brand-android:before {
+  content: "\e93f";
+}
+.if-brand-amd:before {
+  content: "\e940";
+}
+.if-brand-amazonmusic:before {
+  content: "\e941";
+}
+.if-brand-amazon:before {
+  content: "\e942";
+}
+.if-brand-aircanada:before {
+  content: "\e943";
+}
+.if-brand-airbnb:before {
+  content: "\e944";
+}
+.if-brand-ae:before {
+  content: "\e945";
+}
+.if-brand-adobe:before {
+  content: "\e946";
+}
+.if-brand-adidas:before {
+  content: "\e947";
+}
