@@ -6,7 +6,7 @@
     font-style: normal;
     font-display: block;
 }
-[class^="if-social-"], [class*=" if-social-"] {
+[class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeSocial' !important;
   display: inline-block;
   font-style: normal;
@@ -17,93 +17,93 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.if-social-telegram:before {
+.if-telegram:before {
   content: "\e900";
 }
-.if-social-trello:before {
+.if-trello:before {
   content: "\e901";
 }
-.if-social-slack:before {
+.if-slack:before {
   content: "\e902";
 }
-.if-social-wechat:before {
+.if-wechat:before {
   content: "\e903";
 }
-.if-social-myspace:before {
+.if-myspace:before {
   content: "\e904";
 }
-.if-social-bebo:before {
+.if-bebo:before {
   content: "\e905";
 }
-.if-social-messenger:before {
+.if-messenger:before {
   content: "\e906";
 }
-.if-social-pinterest:before {
+.if-pinterest:before {
   content: "\e907";
 }
-.if-social-discord:before {
+.if-discord:before {
   content: "\e908";
 }
-.if-social-digg:before {
+.if-digg:before {
   content: "\e909";
 }
-.if-social-stumbleupon:before {
+.if-stumbleupon:before {
   content: "\e90a";
 }
-.if-social-linkedin:before {
+.if-linkedin:before {
   content: "\e90b";
 }
-.if-social-medium:before {
+.if-medium:before {
   content: "\e90c";
 }
-.if-social-tiktok:before {
+.if-tiktok:before {
   content: "\e90d";
 }
-.if-social-flickr:before {
+.if-flickr:before {
   content: "\e90e";
 }
-.if-social-dribbble:before {
+.if-dribbble:before {
   content: "\e90f";
 }
-.if-social-deviantart:before {
+.if-deviantart:before {
   content: "\e910";
 }
-.if-social-behance:before {
+.if-behance:before {
   content: "\e911";
 }
-.if-social-wordpress:before {
+.if-wordpress:before {
   content: "\e912";
 }
-.if-social-reddit:before {
+.if-reddit:before {
   content: "\e913";
 }
-.if-social-stackoverflow:before {
+.if-stackoverflow:before {
   content: "\e914";
 }
-.if-social-snapchat:before {
+.if-snapchat:before {
   content: "\e915";
 }
-.if-social-twitch:before {
+.if-twitch:before {
   content: "\e916";
 }
-.if-social-tumblr:before {
+.if-tumblr:before {
   content: "\e917";
 }
-.if-social-youtube:before {
+.if-youtube:before {
   content: "\e918";
 }
-.if-social-x:before {
+.if-x:before {
   content: "\e919";
 }
-.if-social-whatsapp:before {
+.if-whatsapp:before {
   content: "\e91a";
 }
-.if-social-threads:before {
+.if-threads:before {
   content: "\e91b";
 }
-.if-social-instagram:before {
+.if-instagram:before {
   content: "\e91c";
 }
-.if-social-facebook:before {
+.if-facebook:before {
   content: "\e91d";
 }

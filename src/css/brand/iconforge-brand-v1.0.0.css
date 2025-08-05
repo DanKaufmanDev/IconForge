@@ -6,7 +6,7 @@
     font-style: normal;
     font-display: block;
 }
-[class^="if-brand-"], [class*=" if-brand-"] {
+[class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeBrand' !important;
   display: inline-block;
   font-style: normal;
@@ -17,219 +17,219 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.if-brand-zoom:before {
+.if-zoom:before {
   content: "\e900";
 }
-.if-brand-zillow:before {
+.if-zillow:before {
   content: "\e901";
 }
-.if-brand-ytmusic:before {
+.if-yt-music:before {
   content: "\e902";
 }
-.if-brand-yahoo:before {
+.if-yahoo:before {
   content: "\e903";
 }
-.if-brand-xbox:before {
+.if-xbox:before {
   content: "\e904";
 }
-.if-brand-wish:before {
+.if-wish:before {
   content: "\e905";
 }
-.if-brand-wendys:before {
+.if-wendys:before {
   content: "\e906";
 }
-.if-brand-vlc:before {
+.if-vlc:before {
   content: "\e907";
 }
-.if-brand-venmo:before {
+.if-venmo:before {
   content: "\e908";
 }
-.if-brand-tinder:before {
+.if-tinder:before {
   content: "\e909";
 }
-.if-brand-tidal:before {
+.if-tidal:before {
   content: "\e90a";
 }
-.if-brand-tesla:before {
+.if-tesla:before {
   content: "\e90b";
 }
-.if-brand-steam:before {
+.if-steam:before {
   content: "\e90c";
 }
-.if-brand-starbucks:before {
+.if-starbucks:before {
   content: "\e90d";
 }
-.if-brand-square:before {
+.if-square:before {
   content: "\e90e";
 }
-.if-brand-sprite:before {
+.if-sprite:before {
   content: "\e90f";
 }
-.if-brand-spotify:before {
+.if-spotify:before {
   content: "\e910";
 }
-.if-brand-soundcloud:before {
+.if-soundcloud:before {
   content: "\e911";
 }
-.if-brand-skype:before {
+.if-skype:before {
   content: "\e912";
 }
-.if-brand-rss:before {
+.if-rss:before {
   content: "\e913";
 }
-.if-brand-playstation:before {
+.if-playstation:before {
   content: "\e914";
 }
-.if-brand-origin:before {
+.if-origin:before {
   content: "\e915";
 }
-.if-brand-oracle:before {
+.if-oracle:before {
   content: "\e916";
 }
-.if-brand-of:before {
+.if-of:before {
   content: "\e917";
 }
-.if-brand-nzxt:before {
+.if-nzxt:before {
   content: "\e918";
 }
-.if-brand-nike:before {
+.if-nike:before {
   content: "\e919";
 }
-.if-brand-music:before {
+.if-music:before {
   content: "\e91a";
 }
-.if-brand-mcdonalds:before {
+.if-mcdonalds:before {
   content: "\e91b";
 }
-.if-brand-lyft:before {
+.if-lyft:before {
   content: "\e91c";
 }
-.if-brand-logitech:before {
+.if-logitech:before {
   content: "\e91d";
 }
-.if-brand-logi:before {
+.if-logi:before {
   content: "\e91e";
 }
-.if-brand-lg:before {
+.if-lg:before {
   content: "\e91f";
 }
-.if-brand-lego:before {
+.if-lego:before {
   content: "\e920";
 }
-.if-brand-jordan:before {
+.if-jordan:before {
   content: "\e921";
 }
-.if-brand-ios:before {
+.if-ios:before {
   content: "\e922";
 }
-.if-brand-ibm:before {
+.if-ibm:before {
   content: "\e923";
 }
-.if-brand-hp:before {
+.if-hp:before {
   content: "\e924";
 }
-.if-brand-hollister:before {
+.if-hollister:before {
   content: "\e925";
 }
-.if-brand-hinge:before {
+.if-hinge:before {
   content: "\e926";
 }
-.if-brand-hf:before {
+.if-hello-fresh:before {
   content: "\e927";
 }
-.if-brand-handm:before {
+.if-h-m:before {
   content: "\e928";
 }
-.if-brand-gucci:before {
+.if-gucci:before {
   content: "\e929";
 }
-.if-brand-gpay:before {
+.if-google-pay:before {
   content: "\e92a";
 }
-.if-brand-google:before {
+.if-google:before {
   content: "\e92b";
 }
-.if-brand-ge:before {
+.if-ge:before {
   content: "\e92c";
 }
-.if-brand-figma:before {
+.if-figma:before {
   content: "\e92d";
 }
-.if-brand-etsy:before {
+.if-etsy:before {
   content: "\e92e";
 }
-.if-brand-electron:before {
+.if-electron:before {
   content: "\e92f";
 }
-.if-brand-ebay:before {
+.if-ebay:before {
   content: "\e930";
 }
-.if-brand-ea:before {
+.if-ea:before {
   content: "\e931";
 }
-.if-brand-dell:before {
+.if-dell:before {
   content: "\e932";
 }
-.if-brand-cocacola:before {
+.if-coca-cola:before {
   content: "\e933";
 }
-.if-brand-cnn:before {
+.if-cnn:before {
   content: "\e934";
 }
-.if-brand-cloudflare:before {
+.if-cloudflare:before {
   content: "\e935";
 }
-.if-brand-cat:before {
+.if-cat:before {
   content: "\e936";
 }
-.if-brand-canva:before {
+.if-canva:before {
   content: "\e937";
 }
-.if-brand-burgerking:before {
+.if-burgerking:before {
   content: "\e938";
 }
-.if-brand-blender:before {
+.if-blender:before {
   content: "\e939";
 }
-.if-brand-blackberry:before {
+.if-blackberry:before {
   content: "\e93a";
 }
-.if-brand-aws:before {
+.if-aws:before {
   content: "\e93b";
 }
-.if-brand-asus:before {
+.if-asus:before {
   content: "\e93c";
 }
-.if-brand-aseprite:before {
+.if-aseprite:before {
   content: "\e93d";
 }
-.if-brand-apple:before {
+.if-apple:before {
   content: "\e93e";
 }
-.if-brand-android:before {
+.if-android:before {
   content: "\e93f";
 }
-.if-brand-amd:before {
+.if-amd:before {
   content: "\e940";
 }
-.if-brand-amazonmusic:before {
+.if-amazonmusic:before {
   content: "\e941";
 }
-.if-brand-amazon:before {
+.if-amazon:before {
   content: "\e942";
 }
-.if-brand-aircanada:before {
+.if-aircanada:before {
   content: "\e943";
 }
-.if-brand-airbnb:before {
+.if-airbnb:before {
   content: "\e944";
 }
-.if-brand-ae:before {
+.if-ae:before {
   content: "\e945";
 }
-.if-brand-adobe:before {
+.if-adobe:before {
   content: "\e946";
 }
-.if-brand-adidas:before {
+.if-adidas:before {
   content: "\e947";
 }

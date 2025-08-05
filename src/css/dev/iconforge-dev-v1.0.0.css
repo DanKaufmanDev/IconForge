@@ -6,7 +6,7 @@
   font-style: normal;
   font-display: block;
 }
-[class^="if-dev-"], [class*=" if-dev-"] {
+[class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeDev' !important;
   display: inline-block;
   font-style: normal;
@@ -17,150 +17,150 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.if-dev-npm:before {
+.if-npm:before {
   content: "\e900";
 }
-.if-dev-nuxtjs:before {
+.if-nuxtjs:before {
   content: "\e966";
 }
-.if-dev-nextjs:before {
+.if-nextjs:before {
   content: "\e967";
 }
-.if-dev-haskell:before {
+.if-haskell:before {
   content: "\e968";
 }
-.if-dev-solidity:before {
+.if-solidity:before {
   content: "\e969";
 }
-.if-dev-ionic:before {
+.if-ionic:before {
   content: "\e96a";
 }
-.if-dev-bitbucket:before {
+.if-bitbucket:before {
   content: "\e96b";
 }
-.if-dev-webgl:before {
+.if-webgl:before {
   content: "\e96c";
 }
-.if-dev-graphql:before {
+.if-graphql:before {
   content: "\e96d";
 }
-.if-dev-jupyter:before {
+.if-jupyter:before {
   content: "\e96e";
 }
-.if-dev-webhook:before {
+.if-webhook:before {
   content: "\e96f";
 }
-.if-dev-redux:before {
+.if-redux:before {
   content: "\e970";
 }
-.if-dev-sass:before {
+.if-sass:before {
   content: "\e971";
 }
-.if-dev-terraform:before {
+.if-terraform:before {
   content: "\e972";
 }
-.if-dev-docker:before {
+.if-docker:before {
   content: "\e973";
 }
-.if-dev-bootstrap:before {
+.if-bootstrap:before {
   content: "\e974";
 }
-.if-dev-django:before {
+.if-django:before {
   content: "\e975";
 }
-.if-dev-gitlab:before {
+.if-gitlab:before {
   content: "\e976";
 }
-.if-dev-github:before {
+.if-github:before {
   content: "\e977";
 }
-.if-dev-git:before {
+.if-git:before {
   content: "\e978";
 }
-.if-dev-nodejs:before {
+.if-nodejs:before {
   content: "\e979";
 }
-.if-dev-sqlite:before {
+.if-sqlite:before {
   content: "\e97a";
 }
-.if-dev-postgresql:before {
+.if-postgresql:before {
   content: "\e97b";
 }
-.if-dev-mysql:before {
+.if-mysql:before {
   content: "\e97c";
 }
-.if-dev-golang:before {
+.if-golang:before {
   content: "\e97d";
 }
-.if-dev-rust:before {
+.if-rust:before {
   content: "\e97e";
 }
-.if-dev-dart:before {
+.if-dart:before {
   content: "\e97f";
 }
-.if-dev-flask:before {
+.if-flask:before {
   content: "\e980";
 }
-.if-dev-python:before {
+.if-python:before {
   content: "\e981";
 }
-.if-dev-express:before {
+.if-express:before {
   content: "\e982";
 }
-.if-dev-lua:before {
+.if-lua:before {
   content: "\e983";
 }
-.if-dev-ruby:before {
+.if-ruby:before {
   content: "\e984";
 }
-.if-dev-php:before {
+.if-php:before {
   content: "\e985";
 }
-.if-dev-kotlin:before {
+.if-kotlin:before {
   content: "\e986";
 }
-.if-dev-flutter:before {
+.if-flutter:before {
   content: "\e987";
 }
-.if-dev-swift:before {
+.if-swift:before {
   content: "\e988";
 }
-.if-dev-java:before {
+.if-java:before {
   content: "\e989";
 }
-.if-dev-react:before {
+.if-react:before {
   content: "\e98a";
 }
-.if-dev-angularjs:before {
+.if-angularjs:before {
   content: "\e98b";
 }
-.if-dev-jquery:before {
+.if-jquery:before {
   content: "\e98c";
 }
-.if-dev-vuejs:before {
+.if-vuejs:before {
   content: "\e98d";
 }
-.if-dev-typescript:before {
+.if-typescript:before {
   content: "\e98e";
 }
-.if-dev-csharp:before {
+.if-csharp:before {
   content: "\e98f";
 }
-.if-dev-cplus:before {
+.if-cplus:before {
   content: "\e990";
 }
-.if-dev-c:before {
+.if-c:before {
   content: "\e991";
 }
-.if-dev-tailwindcss:before {
+.if-tailwindcss:before {
   content: "\e992";
 }
-.if-dev-javascript:before {
+.if-javascript:before {
   content: "\e993";
 }
-.if-dev-css:before {
+.if-css:before {
   content: "\e994";
 }
-.if-dev-html:before {
+.if-html:before {
   content: "\e995";
 }

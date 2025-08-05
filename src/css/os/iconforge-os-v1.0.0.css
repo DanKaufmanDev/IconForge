@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'IconForgeOs';
+  font-family: 'IconForgeOS';
   src:  url('../../icons/os/iconforge-os-v1.0.0.woff2') format('woff2'),
     url('../../icons/os/iconforge-os-v1.0.0.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
-[class^="if-os-"], [class*=" if-os-"] {
-  font-family: 'IconForgeOs' !important;
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeOS' !important;
   display: inline-block;
   font-style: normal;
   font-weight: normal;
@@ -17,36 +17,36 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.if-os-windowsxp:before {
+.if-windows-xp:before {
   content: "\e900";
 }
-.if-os-windows11:before {
+.if-windows-11:before {
   content: "\e901";
 }
-.if-os-windows10:before {
+.if-windows-10:before {
   content: "\e902";
 }
-.if-os-safari:before {
+.if-safari:before {
   content: "\e903";
 }
-.if-os-opera:before {
+.if-opera:before {
   content: "\e904";
 }
-.if-os-linux:before {
+.if-linux:before {
   content: "\e905";
 }
-.if-os-ie:before {
+.if-ie:before {
   content: "\e906";
 }
-.if-os-firefox:before {
+.if-firefox:before {
   content: "\e907";
 }
-.if-os-edge:before {
+.if-edge:before {
   content: "\e908";
 }
-.if-os-chrome:before {
+.if-chrome:before {
   content: "\e909";
 }
-.if-os-brave:before {
+.if-brave:before {
   content: "\e90a";
 }
