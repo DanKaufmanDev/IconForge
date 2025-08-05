@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'IconForgeUiAction';
-  src:  url('../../icons/ui-action/iconforge-ui-action-v1.0.0.woff2') format('woff2'),
-    url('../../icons/ui-action/iconforge-ui-action-v1.0.0.woff') format('woff');
+  src:  url('../../icons/ui-action/iconforge-ui-action.woff2') format('woff2'),
+    url('../../icons/ui-action/iconforge-ui-action.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;

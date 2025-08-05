@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'IconForgeUiArrow';
+  src:  url('../../icons/ui-arrow/iconforge-ui-arrow.woff2') format('woff2'),
+    url('../../icons/ui-arrow/iconforge-ui-arrow.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiArrow' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-arrow-down-right:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e900";
+}
+.if-arrow-down:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e901";
+}
+.if-arrow-left:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e902";
+}
+.if-arrow-right:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e903";
+}
+.if-arrow-up-left:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e904";
+}
+.if-arrow-up:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e905";
+}
+.if-chevron-down-double:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e906";
+}
+.if-chevron-down-small:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e907";
+}
+.if-chevron-down:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e908";
+}
+.if-chevron-left-double:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e909";
+}
+.if-chevron-left-small:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e90a";
+}
+.if-chevron-left:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e90b";
+}
+.if-chevron-right-double:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e90c";
+}
+.if-chevron-right-small:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e90d";
+}
+.if-chevron-right:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e90e";
+}
+.if-chevron-up-double:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e90f";
+}
+.if-chevron-up-small:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e910";
+}
+.if-chevron-up:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e911";
+}
+.if-download-add:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e912";
+}
+.if-download-list:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e913";
+}
+.if-download:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e914";
+}
+.if-export:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e915";
+}
+.if-goto:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e916";
+}
+.if-import:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e917";
+}
+.if-limit-lower:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e918";
+}
+.if-limit-upper:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e919";
+}
+.if-repeat:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e91a";
+}
+.if-swap:before {
+    font-family: 'IconForgeUiArrow' !important;
+  content: "\e91b";
+}
