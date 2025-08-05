@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: block;
 }
+
 [class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeUiAction' !important;
   display: inline-block;
@@ -17,6 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .if-add:before {
     font-family: 'IconForgeUiAction' !important;
   content: "\e900";

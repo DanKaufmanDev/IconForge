@@ -6,6 +6,7 @@
     font-style: normal;
     font-display: block;
 }
+
 [class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeBrand' !important;
   display: inline-block;
@@ -16,6 +17,31 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.if-visa:before {
+  font-family: 'IconForgeBrand' !important;
+  content: "\e948";
+}
+.if-paypal:before {
+  font-family: 'IconForgeBrand' !important;
+  content: "\e949";
+}
+.if-mastercard:before {
+  font-family: 'IconForgeBrand' !important;
+  content: "\e94a";
+}
+.if-discover:before {
+  font-family: 'IconForgeBrand' !important;
+  content: "\e94b";
+}
+.if-apple-pay:before {
+  font-family: 'IconForgeBrand' !important;
+  content: "\e94c";
+}
+.if-amex:before {
+  font-family: 'IconForgeBrand' !important;
+  content: "\e94d";
 }
 .if-zoom:before {
   font-family: 'IconForgeBrand' !important;

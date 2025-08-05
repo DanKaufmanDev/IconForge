@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: block;
 }
+
 [class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeOS' !important;
   display: inline-block;
@@ -17,6 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .if-windows-xp:before {
   font-family: 'IconForgeOS' !important;
   content: "\e900";
