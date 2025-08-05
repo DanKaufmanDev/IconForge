@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'IconForgeDev';
+  src:  url('../../icons/devicons/iconforge-dev-v1.0.0.woff2') format('woff2'),
+    url('../../icons/devicons/iconforge-dev-v1.0.0.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+[class^="if-dev-"], [class*=" if-dev-"] {
+  font-family: 'IconForgeDev' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.if-dev-npm:before {
+  content: "\e900";
+}
+.if-dev-nuxtjs:before {
+  content: "\e966";
+}
+.if-dev-nextjs:before {
+  content: "\e967";
+}
+.if-dev-haskell:before {
+  content: "\e968";
+}
+.if-dev-solidity:before {
+  content: "\e969";
+}
+.if-dev-ionic:before {
+  content: "\e96a";
+}
+.if-dev-bitbucket:before {
+  content: "\e96b";
+}
+.if-dev-webgl:before {
+  content: "\e96c";
+}
+.if-dev-graphql:before {
+  content: "\e96d";
+}
+.if-dev-jupyter:before {
+  content: "\e96e";
+}
+.if-dev-webhook:before {
+  content: "\e96f";
+}
+.if-dev-redux:before {
+  content: "\e970";
+}
+.if-dev-sass:before {
+  content: "\e971";
+}
+.if-dev-terraform:before {
+  content: "\e972";
+}
+.if-dev-docker:before {
+  content: "\e973";
+}
+.if-dev-bootstrap:before {
+  content: "\e974";
+}
+.if-dev-django:before {
+  content: "\e975";
+}
+.if-dev-gitlab:before {
+  content: "\e976";
+}
+.if-dev-github:before {
+  content: "\e977";
+}
+.if-dev-git:before {
+  content: "\e978";
+}
+.if-dev-nodejs:before {
+  content: "\e979";
+}
+.if-dev-sqlite:before {
+  content: "\e97a";
+}
+.if-dev-postgresql:before {
+  content: "\e97b";
+}
+.if-dev-mysql:before {
+  content: "\e97c";
+}
+.if-dev-golang:before {
+  content: "\e97d";
+}
+.if-dev-rust:before {
+  content: "\e97e";
+}
+.if-dev-dart:before {
+  content: "\e97f";
+}
+.if-dev-flask:before {
+  content: "\e980";
+}
+.if-dev-python:before {
+  content: "\e981";
+}
+.if-dev-express:before {
+  content: "\e982";
+}
+.if-dev-lua:before {
+  content: "\e983";
+}
+.if-dev-ruby:before {
+  content: "\e984";
+}
+.if-dev-php:before {
+  content: "\e985";
+}
+.if-dev-kotlin:before {
+  content: "\e986";
+}
+.if-dev-flutter:before {
+  content: "\e987";
+}
+.if-dev-swift:before {
+  content: "\e988";
+}
+.if-dev-java:before {
+  content: "\e989";
+}
+.if-dev-react:before {
+  content: "\e98a";
+}
+.if-dev-angularjs:before {
+  content: "\e98b";
+}
+.if-dev-jquery:before {
+  content: "\e98c";
+}
+.if-dev-vuejs:before {
+  content: "\e98d";
+}
+.if-dev-typescript:before {
+  content: "\e98e";
+}
+.if-dev-csharp:before {
+  content: "\e98f";
+}
+.if-dev-cplus:before {
+  content: "\e990";
+}
+.if-dev-c:before {
+  content: "\e991";
+}
+.if-dev-tailwindcss:before {
+  content: "\e992";
+}
+.if-dev-javascript:before {
+  content: "\e993";
+}
+.if-dev-css:before {
+  content: "\e994";
+}
+.if-dev-html:before {
+  content: "\e995";
+}
