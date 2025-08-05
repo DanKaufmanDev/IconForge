@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'IconForgeUiCloud';
+  src:  url('../../icons/ui-cloud/iconforge-ui-cloud.woff2') format('woff2'),
+    url('../../icons/ui-cloud/iconforge-ui-cloud.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiCloud' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-cloud-download-add:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e900";
+}
+.if-cloud-download-list:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e901";
+}
+.if-cloud-download:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e902";
+}
+.if-cloud-new:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e903";
+}
+.if-cloud-success:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e904";
+}
+.if-cloud-upload:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e905";
+}
+.if-cloud:before {
+    font-family: 'IconForgeUiCloud' !important;
+  content: "\e906";
+}
