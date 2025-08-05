@@ -6,7 +6,7 @@
   font-style: normal;
   font-display: block;
 }
-[class^="if-os-"], [class*=" if-os-"] {
+[class^="if-action-"], [class*=" if-action-"] {
   font-family: 'IconForgeUiAction' !important;
   display: inline-block;
   font-style: normal;
