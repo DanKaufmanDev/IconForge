@@ -18,35 +18,46 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .if-windows-xp:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e900";
 }
 .if-windows-11:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e901";
 }
 .if-windows-10:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e902";
 }
 .if-safari:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e903";
 }
 .if-opera:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e904";
 }
 .if-linux:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e905";
 }
 .if-ie:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e906";
 }
 .if-firefox:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e907";
 }
 .if-edge:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e908";
 }
 .if-chrome:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e909";
 }
 .if-brave:before {
+  font-family: 'IconForgeOS' !important;
   content: "\e90a";
 }

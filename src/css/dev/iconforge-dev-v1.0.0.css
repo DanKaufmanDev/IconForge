@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: block;
 }
+
 [class^="if-"], [class*=" if-"] {
   font-family: 'IconForgeDev' !important;
   display: inline-block;
@@ -17,150 +18,200 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .if-npm:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e900";
 }
 .if-nuxtjs:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e966";
 }
 .if-nextjs:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e967";
 }
 .if-haskell:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e968";
 }
 .if-solidity:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e969";
 }
 .if-ionic:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e96a";
 }
 .if-bitbucket:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e96b";
 }
 .if-webgl:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e96c";
 }
 .if-graphql:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e96d";
 }
 .if-jupyter:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e96e";
 }
 .if-webhook:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e96f";
 }
 .if-redux:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e970";
 }
 .if-sass:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e971";
 }
 .if-terraform:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e972";
 }
 .if-docker:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e973";
 }
 .if-bootstrap:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e974";
 }
 .if-django:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e975";
 }
 .if-gitlab:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e976";
 }
 .if-github:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e977";
 }
 .if-git:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e978";
 }
 .if-nodejs:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e979";
 }
 .if-sqlite:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e97a";
 }
 .if-postgresql:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e97b";
 }
 .if-mysql:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e97c";
 }
 .if-golang:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e97d";
 }
 .if-rust:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e97e";
 }
 .if-dart:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e97f";
 }
 .if-flask:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e980";
 }
 .if-python:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e981";
 }
 .if-express:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e982";
 }
 .if-lua:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e983";
 }
 .if-ruby:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e984";
 }
 .if-php:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e985";
 }
 .if-kotlin:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e986";
 }
 .if-flutter:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e987";
 }
 .if-swift:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e988";
 }
 .if-java:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e989";
 }
 .if-react:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e98a";
 }
 .if-angularjs:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e98b";
 }
 .if-jquery:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e98c";
 }
 .if-vuejs:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e98d";
 }
 .if-typescript:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e98e";
 }
 .if-csharp:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e98f";
 }
 .if-cplus:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e990";
 }
 .if-c:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e991";
 }
 .if-tailwindcss:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e992";
 }
 .if-javascript:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e993";
 }
 .if-css:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e994";
 }
 .if-html:before {
+  font-family: 'IconForgeDev' !important;
   content: "\e995";
 }

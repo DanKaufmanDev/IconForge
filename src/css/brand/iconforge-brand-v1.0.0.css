@@ -18,218 +18,290 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .if-zoom:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e900";
 }
 .if-zillow:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e901";
 }
 .if-yt-music:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e902";
 }
 .if-yahoo:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e903";
 }
 .if-xbox:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e904";
 }
 .if-wish:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e905";
 }
 .if-wendys:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e906";
 }
 .if-vlc:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e907";
 }
 .if-venmo:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e908";
 }
 .if-tinder:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e909";
 }
 .if-tidal:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e90a";
 }
 .if-tesla:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e90b";
 }
 .if-steam:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e90c";
 }
 .if-starbucks:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e90d";
 }
 .if-square:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e90e";
 }
 .if-sprite:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e90f";
 }
 .if-spotify:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e910";
 }
 .if-soundcloud:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e911";
 }
 .if-skype:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e912";
 }
 .if-rss:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e913";
 }
 .if-playstation:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e914";
 }
 .if-origin:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e915";
 }
 .if-oracle:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e916";
 }
 .if-of:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e917";
 }
 .if-nzxt:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e918";
 }
 .if-nike:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e919";
 }
 .if-music:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e91a";
 }
 .if-mcdonalds:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e91b";
 }
 .if-lyft:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e91c";
 }
 .if-logitech:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e91d";
 }
 .if-logi:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e91e";
 }
 .if-lg:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e91f";
 }
 .if-lego:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e920";
 }
 .if-jordan:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e921";
 }
 .if-ios:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e922";
 }
 .if-ibm:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e923";
 }
 .if-hp:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e924";
 }
 .if-hollister:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e925";
 }
 .if-hinge:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e926";
 }
 .if-hello-fresh:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e927";
 }
 .if-h-m:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e928";
 }
 .if-gucci:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e929";
 }
 .if-google-pay:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e92a";
 }
 .if-google:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e92b";
 }
 .if-ge:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e92c";
 }
 .if-figma:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e92d";
 }
 .if-etsy:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e92e";
 }
 .if-electron:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e92f";
 }
 .if-ebay:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e930";
 }
 .if-ea:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e931";
 }
 .if-dell:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e932";
 }
 .if-coca-cola:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e933";
 }
 .if-cnn:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e934";
 }
 .if-cloudflare:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e935";
 }
 .if-cat:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e936";
 }
 .if-canva:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e937";
 }
 .if-burgerking:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e938";
 }
 .if-blender:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e939";
 }
 .if-blackberry:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e93a";
 }
 .if-aws:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e93b";
 }
 .if-asus:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e93c";
 }
 .if-aseprite:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e93d";
 }
 .if-apple:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e93e";
 }
 .if-android:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e93f";
 }
 .if-amd:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e940";
 }
 .if-amazonmusic:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e941";
 }
 .if-amazon:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e942";
 }
 .if-aircanada:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e943";
 }
 .if-airbnb:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e944";
 }
 .if-ae:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e945";
 }
 .if-adobe:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e946";
 }
 .if-adidas:before {
+  font-family: 'IconForgeBrand' !important;
   content: "\e947";
 }

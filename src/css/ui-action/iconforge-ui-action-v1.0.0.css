@@ -18,149 +18,198 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .if-add:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e900";
 }
 .if-addcircle:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e901";
 }
 .if-addeye:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e902";
 }
 .if-analyze:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e903";
 }
 .if-attach:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e904";
 }
 .if-attachmentupload:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e905";
 }
 .if-cancel:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e906";
 }
 .if-clear:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e907";
 }
 .if-close:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e908";
 }
 .if-closesmall:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e909";
 }
 .if-combine:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e90a";
 }
 .if-duplicate:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e90b";
 }
 .if-eyecancelled:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e90c";
 }
 .if-group:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e90d";
 }
 .if-link:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e90e";
 }
 .if-minus:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e90f";
 }
 .if-mix:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e910";
 }
 .if-mouseclick:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e911";
 }
 .if-mouseselect:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e912";
 }
 .if-openexternal:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e913";
 }
 .if-openfile:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e914";
 }
 .if-optimize:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e915";
 }
 .if-pan:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e916";
 }
 .if-pin:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e917";
 }
 .if-plus:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e918";
 }
 .if-pointup:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e919";
 }
 .if-print:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e91a";
 }
 .if-publish:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e91b";
 }
 .if-random:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e91c";
 }
 .if-redo:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e91d";
 }
 .if-refresh:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e91e";
 }
 .if-refresh-cancelled:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e91f";
 }
 .if-reload:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e920";
 }
 .if-removeeye:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e921";
 }
 .if-reset:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e922";
 }
 .if-sort:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e923";
 }
 .if-sort-ascending:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e924";
 }
 .if-sort-descending:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e925";
 }
 .if-staradd:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e926";
 }
 .if-star-cancelled:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e927";
 }
 .if-start-data-analysis:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e928";
 }
 .if-to-be-published:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e929";
 }
 .if-to-search:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e92a";
 }
 .if-touch:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e92b";
 }
 .if-trashcan:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e92c";
 }
 .if-undo:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e92d";
 }
 .if-ungroup:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e92e";
 }
 .if-upload:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e92f";
 }
 .if-upload-success:before {
+    font-family: 'IconForgeUiAction' !important;
   content: "\e930";
 }

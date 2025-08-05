@@ -18,92 +18,122 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .if-telegram:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e900";
 }
 .if-trello:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e901";
 }
 .if-slack:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e902";
 }
 .if-wechat:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e903";
 }
 .if-myspace:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e904";
 }
 .if-bebo:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e905";
 }
 .if-messenger:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e906";
 }
 .if-pinterest:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e907";
 }
 .if-discord:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e908";
 }
 .if-digg:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e909";
 }
 .if-stumbleupon:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e90a";
 }
 .if-linkedin:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e90b";
 }
 .if-medium:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e90c";
 }
 .if-tiktok:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e90d";
 }
 .if-flickr:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e90e";
 }
 .if-dribbble:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e90f";
 }
 .if-deviantart:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e910";
 }
 .if-behance:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e911";
 }
 .if-wordpress:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e912";
 }
 .if-reddit:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e913";
 }
 .if-stackoverflow:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e914";
 }
 .if-snapchat:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e915";
 }
 .if-twitch:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e916";
 }
 .if-tumblr:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e917";
 }
 .if-youtube:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e918";
 }
 .if-x:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e919";
 }
 .if-whatsapp:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e91a";
 }
 .if-threads:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e91b";
 }
 .if-instagram:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e91c";
 }
 .if-facebook:before {
+  font-family: 'IconForgeSocial' !important;
   content: "\e91d";
 }
