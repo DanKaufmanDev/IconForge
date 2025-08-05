@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'IconForgeOs';
-  src:  url('../../icons/osicons/iconforge-os-v1.0.0.woff2') format('woff2'),
-    url('../../icons/osicons/iconforge-os-v1.0.0.woff') format('woff');
+  src:  url('../../icons/os/iconforge-os-v1.0.0.woff2') format('woff2'),
+    url('../../icons/os/iconforge-os-v1.0.0.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
