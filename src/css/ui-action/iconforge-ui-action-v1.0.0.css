@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'IconForgeUiAction';
+  src:  url('../../icons/ui-action/iconforge-ui-action-v1.0.0.woff2') format('woff2'),
+    url('../../icons/ui-action/iconforge-ui-action-v1.0.0.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+[class^="if-os-"], [class*=" if-os-"] {
+  font-family: 'IconForgeUiAction' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.if-action-add:before {
+  content: "\e900";
+}
+.if-action-addcircle:before {
+  content: "\e901";
+}
+.if-action-addeye:before {
+  content: "\e902";
+}
+.if-action-analyze:before {
+  content: "\e903";
+}
+.if-action-attach:before {
+  content: "\e904";
+}
+.if-action-attachmentupload:before {
+  content: "\e905";
+}
+.if-action-cancel:before {
+  content: "\e906";
+}
+.if-action-clear:before {
+  content: "\e907";
+}
+.if-action-close:before {
+  content: "\e908";
+}
+.if-action-closesmall:before {
+  content: "\e909";
+}
+.if-action-combine:before {
+  content: "\e90a";
+}
+.if-action-duplicate:before {
+  content: "\e90b";
+}
+.if-action-eyecancelled:before {
+  content: "\e90c";
+}
+.if-action-group:before {
+  content: "\e90d";
+}
+.if-action-link:before {
+  content: "\e90e";
+}
+.if-action-minus:before {
+  content: "\e90f";
+}
+.if-action-mix:before {
+  content: "\e910";
+}
+.if-action-mouseclick:before {
+  content: "\e911";
+}
+.if-action-mouseselect:before {
+  content: "\e912";
+}
+.if-action-openexternal:before {
+  content: "\e913";
+}
+.if-action-openfile:before {
+  content: "\e914";
+}
+.if-action-optimize:before {
+  content: "\e915";
+}
+.if-action-pan:before {
+  content: "\e916";
+}
+.if-action-pin:before {
+  content: "\e917";
+}
+.if-action-plus:before {
+  content: "\e918";
+}
+.if-action-pointup:before {
+  content: "\e919";
+}
+.if-action-print:before {
+  content: "\e91a";
+}
+.if-action-publish:before {
+  content: "\e91b";
+}
+.if-action-random:before {
+  content: "\e91c";
+}
+.if-action-redo:before {
+  content: "\e91d";
+}
+.if-action-refresh:before {
+  content: "\e91e";
+}
+.if-action-refreshcancelled:before {
+  content: "\e91f";
+}
+.if-action-reload:before {
+  content: "\e920";
+}
+.if-action-removeeye:before {
+  content: "\e921";
+}
+.if-action-reset:before {
+  content: "\e922";
+}
+.if-action-sort:before {
+  content: "\e923";
+}
+.if-action-sortascending:before {
+  content: "\e924";
+}
+.if-action-sortdescending:before {
+  content: "\e925";
+}
+.if-action-staradd:before {
+  content: "\e926";
+}
+.if-action-starcancelled:before {
+  content: "\e927";
+}
+.if-action-startdataanalysis:before {
+  content: "\e928";
+}
+.if-action-tobepublished:before {
+  content: "\e929";
+}
+.if-action-tosearch:before {
+  content: "\e92a";
+}
+.if-action-touch:before {
+  content: "\e92b";
+}
+.if-action-trashcan:before {
+  content: "\e92c";
+}
+.if-action-undo:before {
+  content: "\e92d";
+}
+.if-action-ungroup:before {
+  content: "\e92e";
+}
+.if-action-upload:before {
+  content: "\e92f";
+}
+.if-action-uploadsuccess:before {
+  content: "\e930";
+}
