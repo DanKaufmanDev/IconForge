@@ -23,6 +23,10 @@
   font-family: 'IconForgeDev' !important;
   content: "\e900";
 }
+.if-vmware:before {
+  font-family: 'IconForgeDev' !important;
+  content: "\e901";
+}
 .if-nuxtjs:before {
   font-family: 'IconForgeDev' !important;
   content: "\e966";
