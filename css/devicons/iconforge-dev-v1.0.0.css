@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'IconForge';
+  font-family: 'IconForgeDev';
   src:  url('../../fonts/devicons/iconforge-dev-v1.0.0.woff2') format('woff2'),
-        url('../../fonts/devicons/iconforge-dev-v1.0.0.woff') format('woff');
+    url('../../fonts/devicons/iconforge-dev-v1.0.0.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
 [class^="if-dev-"], [class*=" if-dev-"] {
-  font-family: 'IconForge' !important;
+  font-family: 'IconForgeDev' !important;
   display: inline-block;
   font-style: normal;
   font-weight: normal;

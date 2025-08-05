@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'IconForge';
-  src:  url('../../fonts/brandicons/iconforge-brand-v1.0.0.woff2') format('woff2'),
-        url('../../fonts/brandicons/iconforge-brand-v1.0.0.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
+    font-family: 'IconForgeBrand';
+    src:  url('../../fonts/brandicons/iconforge-brand-v1.0.0.woff2') format('woff2'),
+    url('../../fonts/brandicons/iconforge-brand-v1.0.0.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
 }
 
 [class^="if-brand-"], [class*=" if-brand-"] {
-  font-family: 'IconForge' !important;
+  font-family: 'IconForgeBrand' !important;
   display: inline-block;
   font-style: normal;
   font-weight: normal;

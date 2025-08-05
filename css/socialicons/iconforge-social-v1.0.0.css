@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'IconForge';
-  src:  url('../../fonts/socialicons/iconforge-social-v1.0.0.woff2') format('woff2'),
+    font-family: 'IconForgeSocial';
+    src:  url('../../fonts/socialicons/iconforge-social-v1.0.0.woff2') format('woff2'),
         url('../../fonts/socialicons/iconforge-social-v1.0.0.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
 }
 
 [class^="if-social-"], [class*=" if-social-"] {
-  font-family: 'IconForge' !important;
+  font-family: 'IconForgeSocial' !important;
   display: inline-block;
   font-style: normal;
   font-weight: normal;
