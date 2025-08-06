@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'IconForgeUiGeneral';
+  src:  url('../../icons/ui-general/iconforge-ui-general.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiGeneral' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-explore:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e900";
+}
+.if-eye:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e901";
+}
+.if-flag:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e902";
+}
+.if-language:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e903";
+}
+.if-legal:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e904";
+}
+.if-library:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e905";
+}
+.if-library-new:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e906";
+}
+.if-license:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e907";
+}
+.if-qrcode:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e908";
+}
+.if-reference:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e909";
+}
+.if-spatial:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e90a";
+}
+.if-support:before {
+    font-family: 'IconForgeUiGeneral' !important;
+  content: "\e90b";
+}
