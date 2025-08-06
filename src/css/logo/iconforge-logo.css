@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'IconForgeLogo';
+  src:  url('../../icons/logo/iconforge-logo.woff2') format('woff2'),
+    url('../../icons/logo/iconforge-logo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeLogo' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-iconforge:before {
+    font-family: 'IconForgeLogo' !important;
+  content: "\e900";
+}
+.if-iconforge-alt:before {
+    font-family: 'IconForgeLogo' !important;
+  content: "\e901";
+}
