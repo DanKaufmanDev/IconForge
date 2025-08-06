@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'IconForgeUiCommunication';
+  src:  url('../../icons/ui-communication/iconforge-UI-communication.woff2') format('woff2'),
+    url('../../icons/ui-communication/iconforge-UI-communication.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiCommunication' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-email:before {
+    font-family: 'IconForgeUiCommunication' !important;
+  content: "\e900";
+}
+.if-inquiry:before {
+    font-family: 'IconForgeUiCommunication' !important;
+  content: "\e901";
+}
+.if-mail-inquiry:before {
+    font-family: 'IconForgeUiCommunication' !important;
+  content: "\e902";
+}
+.if-mail:before {
+    font-family: 'IconForgeUiCommunication' !important;
+  content: "\e903";
+}
+.if-shout:before {
+    font-family: 'IconForgeUiCommunication' !important;
+  content: "\e904";
+}
