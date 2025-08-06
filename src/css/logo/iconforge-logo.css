@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'IconForgeLogo';
-  src:  url('../../icons/logo/iconforge-logo.woff2') format('woff2'),
-    url('../../icons/logo/iconforge-logo.woff') format('woff');
+  src:  url('../../icons/logo/iconforge-logo.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;

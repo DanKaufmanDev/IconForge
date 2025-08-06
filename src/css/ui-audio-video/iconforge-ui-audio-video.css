@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'IconForgeUiAudioVideo';
-  src:  url('../../icons/ui-audio-video/iconforge-ui-audio-video.woff2') format('woff2'),
-    url('../../icons/ui-audio-video/iconforge-ui-audio-video.woff') format('woff');
+  src:  url('../../icons/ui-audio-video/iconforge-ui-audio-video.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;

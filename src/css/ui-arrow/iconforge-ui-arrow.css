@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'IconForgeUiArrow';
-  src:  url('../../icons/ui-arrow/iconforge-ui-arrow.woff2') format('woff2'),
-    url('../../icons/ui-arrow/iconforge-ui-arrow.woff') format('woff');
+  src:  url('../../icons/ui-arrow/iconforge-ui-arrow.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;

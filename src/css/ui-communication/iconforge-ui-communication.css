@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'IconForgeUiCommunication';
-  src:  url('../../icons/ui-communication/iconforge-UI-communication.woff2') format('woff2'),
-    url('../../icons/ui-communication/iconforge-UI-communication.woff') format('woff');
+  src:  url('../../icons/ui-communication/iconforge-UI-communication.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;

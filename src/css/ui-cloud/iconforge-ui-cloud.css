@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'IconForgeUiCloud';
-  src:  url('../../icons/ui-cloud/iconforge-ui-cloud.woff2') format('woff2'),
-    url('../../icons/ui-cloud/iconforge-ui-cloud.woff') format('woff');
+  src:  url('../../icons/ui-cloud/iconforge-ui-cloud.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;

@@ -1,7 +1,6 @@
 @font-face {
     font-family: 'IconForgeSocial';
-    src:  url('../../icons/social/iconforge-social.woff2') format('woff2'),
-        url('../../icons/social/iconforge-social.woff') format('woff');
+    src:  url('../../icons/social/iconforge-social.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: block;

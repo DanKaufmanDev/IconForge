@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'IconForgeUiChart';
-  src:  url('../../icons/ui-chart/iconforge-ui-chart.woff2') format('woff2'),
-    url('../../icons/ui-chart/iconforge-ui-chart.woff') format('woff');
+  src:  url('../../icons/ui-chart/iconforge-ui-chart.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
