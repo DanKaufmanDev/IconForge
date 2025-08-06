@@ -1,3 +1,6 @@
+@import url(util/iconforge-color-utiil.css);
+@import url(util/iconforge-size-util.css);
+
 @import url(logo/iconforge-logo.css);
 @import url(dev/iconforge-dev.css);
 @import url(social/iconforge-social.css);
