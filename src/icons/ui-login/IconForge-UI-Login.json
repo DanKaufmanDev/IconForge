@@ -1,0 +1,82 @@
+{
+  "selection": [
+    {
+      "order": 1270,
+      "name": "login"
+    },
+    {
+      "order": 1271,
+      "name": "logout"
+    }
+  ],
+  "metadata": {
+    "name": "IconForge-UI-Login",
+    "importSize": {
+      "width": 800,
+      "height": 800
+    },
+    "iconsHash": 104451534
+  },
+  "height": 1024,
+  "prevSize": 32,
+  "icons": [
+    {
+      "paths": [
+        "M896 85.333v853.333h-469.333v-170.667h85.333v85.333h298.667v-682.667h-298.667v85.333h-85.333v-170.667h469.333zM234.667 362.667c67.649 0 124.791 44.982 143.15 106.668l347.517-0.001v85.333h-42.667v85.333h-128v-85.333l-176.85-0.001c-18.358 61.686-75.501 106.668-143.15 106.668-82.475 0-149.333-66.859-149.333-149.333s66.859-149.333 149.333-149.333zM234.667 448c-35.346 0-64 28.654-64 64s28.654 64 64 64c35.346 0 64-28.654 64-64s-28.654-64-64-64z"
+      ],
+      "grid": 0,
+      "tags": [
+        "login"
+      ]
+    },
+    {
+      "paths": [
+        "M640 85.333v170.667l-85.332-0.001-0.001-85.333h-298.667v682.667h298.667l0.001-85.334 85.332 0.001v170.667h-469.333v-853.333h469.333zM755.503 311.163l200.837 200.837-200.837 200.837-60.34-60.34 97.829-97.831-408.993 0.001v-85.333h408.993l-97.829-97.83 60.34-60.34z"
+      ],
+      "grid": 0,
+      "tags": [
+        "logout"
+      ]
+    }
+  ],
+  "colorThemes": [],
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "if-",
+      "metadata": {
+        "fontFamily": "iconforge-ui-location",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "showSelector": false,
+      "showMetadata": false,
+      "showVersion": false,
+      "showMetrics": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon",
+      "name": "icomoon"
+    },
+    "historySize": 50,
+    "showCodes": true,
+    "gridSize": 16,
+    "showGrid": false,
+    "showLiga": false
+  },
+  "IcoMoonType": "icon-set"
+}
