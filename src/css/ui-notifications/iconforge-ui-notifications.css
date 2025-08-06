@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'IconForgeUiNotifications';
+  src:  url('../../icons/ui-notifications/iconforge-ui-notifications.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="if-"], [class*=" if-"] {
+  font-family: 'IconForgeUiNotifications' !important;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-warning:before {
+    font-family: 'IconForgeUiNotifications' !important;
+  content: "\e900";
+}
+.if-alarm-bell:before {
+    font-family: 'IconForgeUiNotifications' !important;
+  content: "\e901";
+}
+.if-alarm-bell-cancelled:before {
+    font-family: 'IconForgeUiNotifications' !important;
+  content: "\e902";
+}
+.if-notification:before {
+    font-family: 'IconForgeUiNotifications' !important;
+  content: "\e903";
+}
+.if-notifications:before {
+    font-family: 'IconForgeUiNotifications' !important;
+  content: "\e904";
+}
