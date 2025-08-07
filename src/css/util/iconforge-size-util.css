@@ -13,10 +13,22 @@
 .is-size-8xl { font-size: 8rem; }
 
 /* Height/Width */
-.is-h-1 { height: 0.375rem;}
+/* Height */
+.is-h-auto { height: auto; }
+.is-h-fit { height: fit-content; }
+.is-h-min { height: min-content; }
+.is-h-max { height: max-content; }
+.is-h-full { height: 100%; }
+.is-h-three-quarter { height: 75%; }
+.is-h-half { height: 50%; }
+.is-h-quarter { height: 25%; }
 
-
-
-
+/* Width */
 .is-w-auto { width: auto; }
 .is-w-fit { width: fit-content; }
+.is-w-min { width: min-content; }
+.is-w-max { width: max-content; }
+.is-w-full { width: 100%; }
+.is-w-three-quarter { width: 75%; }
+.is-w-half { width: 50%; }
+.is-w-quarter { width: 25%; }
