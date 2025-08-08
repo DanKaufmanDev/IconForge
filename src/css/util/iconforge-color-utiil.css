@@ -423,3 +423,5 @@
 .is-bg-coal-8 { background-color: #1e293b; }
 .is-bg-coal-9 { background-color: #0f172a; }
 .is-bg-coal-10 { background-color: #0a0e1a; }
+
+.is-gradient { color: transparent; background-clip: text; }
