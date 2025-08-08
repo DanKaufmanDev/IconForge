@@ -1,0 +1,4 @@
+{
+    "if-iconforge": ".if-iconforge:before { font-family: 'IconForge'; content: '\\e900' }",
+    "if-iconforge-alt": ".if-iconforge-alt:before { font-family: 'IconForge'; content: '\\e901' }"
+}

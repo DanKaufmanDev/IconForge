@@ -1,0 +1,29 @@
+{
+"is-color-white": ".is-color-white { color: #fff; }",
+"is=bg-white": ".is-bg-white { background-color: #fff; }",
+
+"is-color-black": ".is-color-black { color: #000; }",
+"is-bg-black": ".is-bg-black { background-color: #000; }",
+
+"is-color-red-1": ".is-color-red-1 { color: #FFE5E5; }",
+"is-color-red-2": ".is-color-red-2 { color: #FFB3B3; }",
+"is-color-red-3": ".is-color-red-3 { color: #FF8080; }",
+"is-color-red-4": ".is-color-red-4 { color: #FF4D4D; }",
+"is-color-red-5": ".is-color-red-5 { color: #FF1A1A; }",
+"is-color-red-6": ".is-color-red-6 { color: #E60000; }",
+"is-color-red-7": ".is-color-red-7 { color: #B30000; }",
+"is-color-red-8": ".is-color-red-8 { color: #800000; }",
+"is-color-red-9": ".is-color-red-9 { color: #4D0000; }",
+"is-color-red-10": ".is-color-red-10 { color: #1A0000; }",
+
+"is-bg-red-1": ".is-bg-red-1 { background-color: #ffe5e5; }",
+"is-bg-red-2": ".is-bg-red-2 { background-color: #fcbaba; }",
+"is-bg-red-3": ".is-bg-red-3 { background-color: #f28f8f; }",
+"is-bg-red-4": ".is-bg-red-4 { background-color: #e65f5f; }",
+"is-bg-red-5": ".is-bg-red-5 { background-color: #dc2626; }",
+"is-bg-red-6": ".is-bg-red-6 { background-color: #b91c1c; }",
+"is-bg-red-7": ".is-bg-red-7 { background-color: #991b1b; }",
+"is-bg-red-8": ".is-bg-red-8 { background-color: #7f1d1d; }",
+"is-bg-red-9": ".is-bg-red-9 { background-color: #611616; }",
+"is-bg-red-10": ".is-bg-red-10 { background-color: #4b0f0f; }"
+}
