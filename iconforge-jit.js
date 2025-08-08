@@ -25,13 +25,8 @@
   };
 
   const injectFontFace = () => {
-    const css = `/* Injected by IconForge */
-        @font-face {
-        font-family: '${FONT_NAME}';
-        src: url('${FONT_URL}') format('woff2');
-        font-display: block;
-      }
-    `;
+    const css = `/* Injected by IconForge */ 
+    @font-face { font-family: '${FONT_NAME}'; src: url('${FONT_URL}') format('woff2'); font-display: block; }`;
     style.textContent = css;
   };
 
