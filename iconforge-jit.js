@@ -1,5 +1,5 @@
 (() => {
-  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@5836ad5';
+  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@daa4c65';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
@@ -25,16 +25,14 @@
   };
 
   const injectFontFace = () => {
-    const css = `
-      @font-face {
+    const css = `/* Injected by IconForge */
+        @font-face {
         font-family: '${FONT_NAME}';
         src: url('${FONT_URL}') format('woff2');
         font-display: block;
       }
     `;
-    const fontStyle = document.createElement('style');
-    fontStyle.textContent = css;
-    document.head.appendChild(fontStyle);
+    style.textContent = css;
   };
 
   const fetchMeta = async () => {
