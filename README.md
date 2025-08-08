@@ -9,4 +9,14 @@ Can't find an icon you're looking for? [Request an icon](https://github.com/DanK
 ## Bug
 Found a bug? [Report Here](https://github.com/DanKaufmanDev/IconForge/issues/new?labels=bug)
 
-## Installation Guide
+## Installation
+
+### Option 1: CDN 
+```html
+<script src="https://cdn.jsdelivr.net/gh/DankaufmanDev/IconForge@latest/iconforge-jit.js"></script>
+```
+```html
+<head>
+<!-- Copy into the head tag of your .html -->
+</head>
+```
