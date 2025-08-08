@@ -17,6 +17,6 @@ Found a bug? [Report Here](https://github.com/DanKaufmanDev/IconForge/issues/new
 ```
 ```html
 <head>
-<!-- Copy into the head tag of your .html -->
+<!-- Copy the CDN script into the head of you .html file -->
 </head>
 ```
