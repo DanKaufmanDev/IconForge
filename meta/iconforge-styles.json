@@ -123,7 +123,7 @@
 "is-bg-purple-8": ".is-bg-purple-8  { background-color: #6b21a8; }",
 "is-bg-purple-9": ".is-bg-purple-9  { background-color: #581c87; }",
 "is-bg-purple-10": ".is-bg-purple-10 { background-color: #3b0764; }",
-"is-color-blush1": ".is-color-blush-1 { color: #FFF0F3; }",
+"is-color-blush-1": ".is-color-blush-1 { color: #FFF0F3; }",
 "is-color-blush-2": ".is-color-blush-2 { color: #FFD9DF; }",
 "is-color-blush-3": ".is-color-blush-3 { color: #FFC0C9; }",
 "is-color-blush-4": ".is-color-blush-4 { color: #FFA7B3; }",
