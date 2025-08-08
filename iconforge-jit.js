@@ -46,13 +46,21 @@
     stylesMeta = styles;
   };
 
-  const scanDOM = () => {
-    document.querySelectorAll('[class]').forEach(el => {
-      el.classList.forEach(cls => {
-        if (cls.startsWith('if-')) usedIf.add(cls);
-        else if (cls.startsWith('is-')) usedIs.add(cls);
-      });
-    });
+  const scanNode = (node) => {
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+    const scanElement = (el) => {
+        el.classList.forEach(cls => {
+            if (cls.startsWith('if-')) usedIf.add(cls);
+            else if (cls.startsWith('is-')) usedIs.add(cls);
+        });
+    };
+
+    if (node.hasAttribute('class')) {
+        scanElement(node);
+    }
+
+    node.querySelectorAll('[class]').forEach(scanElement);
   };
 
   const injectStyles = () => {
@@ -60,14 +68,14 @@
 
     usedIf.forEach(cls => {
       if (!injected.has(cls) && iconsMeta[cls]) {
-        css += iconsMeta[cls] + '\n';
+        css += iconsMeta[cls] + '';
         injected.add(cls);
       }
     });
 
     usedIs.forEach(cls => {
       if (!injected.has(cls) && stylesMeta[cls]) {
-        css += stylesMeta[cls] + '\n';
+        css += stylesMeta[cls] + '';
         injected.add(cls);
       }
     });
@@ -76,31 +84,35 @@
   };
 
   const run = async () => {
-    if (!Object.keys(iconsMeta).length || !Object.keys(stylesMeta).length) {
-      await fetchMeta();
-    }
-    scanDOM();
+    await fetchMeta();
+    scanNode(document.documentElement);
     injectStyles();
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach(mutation => {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(scanNode);
+            } else if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                scanNode(mutation.target);
+            }
+        });
+        injectStyles();
+    });
+
+    observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
+    });
   };
 
-  // Observe DOM mutations for dynamic content
-  const observer = new MutationObserver(run);
-  observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['class']
-  });
+  preloadFont();
+  injectFontFace();
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      preloadFont();
-      injectFontFace();
-      run();
-    });
+    document.addEventListener('DOMContentLoaded', run);
   } else {
-    preloadFont();
-    injectFontFace();
     run();
   }
 })();
