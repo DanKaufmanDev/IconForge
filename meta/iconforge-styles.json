@@ -395,6 +395,6 @@
 "is-rot-180": ".is-rot-180 { rotate: 180deg; }",
 "is-rot-270": ".is-rot-270 { rotate: 270deg; }",
 "is-rot-360": ".is-rot-360 { rotate: 360deg; }",
-"is-flip-v": ".is-flip-v { transform: scaleX(-1); }",
-"is-flip-h": ".is-flip-h { transform: scaleY(-1); }"
+"is-flip-v": ".is-flip-v { transform: scaleY(-1); }",
+"is-flip-h": ".is-flip-h { transform: scaleX(-1); }"
 }
