@@ -1,5 +1,5 @@
 {
-  "name": "iconforge",
+  "name": "iconforged",
   "version": "1.0.0",
   "description": "<div align=\"center\"><img src=\"https://imgur.com/0PkWKFR.png\" style=\"width:50%; height:50%;\"/></div>",
   "main": "dist/iconforge.js",
