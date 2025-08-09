@@ -31,7 +31,7 @@
   };
 
   const injectClass = () => {
-    const css = `[class^="if-"], [class*=" if-"] { font-family: '${FONT_NAME}' !important;  font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }`;
+    const css = `[class^="if-"], [class*=" if-"] { font-family: '${FONT_NAME}' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }`;
     style.textContent += css;
   };
   
