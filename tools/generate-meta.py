@@ -2,7 +2,7 @@ import re
 import json
 import os
 
-css_input_file = 'style.css'  
+css_input_file = 'convert.css'  
 json_output_file = 'iconforge-icons.json'  
 
 with open(css_input_file, 'r') as f:
