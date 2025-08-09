@@ -20,3 +20,5 @@ Found a bug? [Report Here](https://github.com/DanKaufmanDev/IconForge/issues/new
 <!-- Copy the CDN script into the head of you .html file -->
 </head>
 ```
+```
+```
