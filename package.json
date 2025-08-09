@@ -1,0 +1,27 @@
+{
+  "name": "iconforged",
+  "version": "1.0.1",
+  "description": "Frontend icon library. Bridging the gap between traditional icons and modern workflows.",
+  "main": "dist/iconforge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanKaufmanDev/IconForge.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "DanKaufmanDev",
+    "url": "https://danielkaufman.dev"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanKaufmanDev/IconForge/issues"
+  },
+  "homepage": "https://github.com/DanKaufmanDev/IconForge#readme",
+  "files": [
+    "dist"
+  ],
+  "jsdelivr": "dist/iconforge.js"
+}
