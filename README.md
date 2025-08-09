@@ -18,5 +18,5 @@ Found a bug? [Report Here](https://github.com/DanKaufmanDev/IconForge/issues/new
 </head>
 ```
 ```html
-<script src="https://cdn.jsdelivr.net/npm/IconForge@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/iconforge@latest"></script>
 ```
