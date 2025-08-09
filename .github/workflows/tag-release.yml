@@ -18,7 +18,7 @@ jobs:
 
       - name: Get latest tag
         id: get_tag
-        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0 || echo 'v1.0.0')"
+        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0 || echo 'v0.0.0')"
 
       - name: Increment tag
         id: increment_tag
