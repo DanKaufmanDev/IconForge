@@ -30,6 +30,11 @@
     style.textContent = css;
   };
 
+  const injectClass = () => {
+    const css = `[class^="if-"], [class*=" if-"] { font-family: '${FONT_NAME}' !important;  font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }`;
+    style.textContent += css;
+  };
+  
   const fetchMeta = async () => {
     const [icons, styles] = await Promise.all([
       fetch(META_ICONS_URL).then(res => res.json()),
@@ -102,6 +107,7 @@
 
   preloadFont();
   injectFontFace();
+  injectClass();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
