@@ -14,7 +14,7 @@ Found a bug? [Report Here](https://github.com/DanKaufmanDev/IconForge/issues/new
 ### Option 1: CDN 
 ```html
 <head>
-<!-- Copy the CDN script into the head of you .html file -->
+<!-- Place this script tag inside the <head> section of your HTML file -->
 </head>
 ```
 ```html
