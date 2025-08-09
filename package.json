@@ -1,7 +1,7 @@
 {
   "name": "iconforged",
-  "version": "1.0.0",
-  "description": "<div align=\"center\"><img src=\"https://imgur.com/0PkWKFR.png\" style=\"width:50%; height:50%;\"/></div>",
+  "version": "1.0.1",
+  "description": "Frontend icon library. Bridging the gap between traditional icons and modern workflows.",
   "main": "dist/iconforge.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
