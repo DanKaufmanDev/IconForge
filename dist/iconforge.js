@@ -1,5 +1,5 @@
 (() => {
-  const CDN = 'https://cdn.jsdelivr.net/gh/IconForge@015921b/dist/iconforge.js';
+  const CDN = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
