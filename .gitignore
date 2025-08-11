@@ -2,4 +2,6 @@
 .DS_Store
 *.css
 *.html
+*config.js
 node_modules/
+iconforge-output/
