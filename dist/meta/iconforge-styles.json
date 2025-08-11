@@ -662,14 +662,14 @@
 "is-py-9": ".is-py-9 { padding-top: 2.25rem; padding-bottom: 2.25rem; }",
 "is-py-10": ".is-py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem;  }",
 
-"is-anim-pulse":"@keyframes is-pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } } .is-anim-pulse { animation: is-pulse 1s ease-in-out infinite alternate; }",
-"is-anim-blink":"@keyframes is-blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } } .is-anim-blink { animation: is-blink 0.5s ease-in-out infinite alternate; }",
-"is-anim-ping":"@keyframes is-ping { 75%, 100% { transform: scale(2); opacity: 0; } } .is-anim-ping { animation: is-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }",
-"is-anim-spin":"@keyframes is-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .is-anim-spin { animation: is-spin 2s linear infinite; }",
-"is-anim-bounce":"@keyframes is-bounce { 0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); } 50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); } } .is-anim-bounce { animation: is-bounce 1s infinite; }",
-"is-anim-shake":"@keyframes is-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } } .is-anim-shake { animation: is-shake 0.5s infinite; }",
-"is-anim-wiggle":"@keyframes is-wiggle { 0%, 50%, 100% { transform: rotate(0deg); } 25% { transform: rotate(10deg); } 75% { transform: rotate(-10deg); } } .is-anim-wiggle { animation: is-wiggle 1s ease-in-out infinite; }",
-"is-anim-flip":"@keyframes is-flip { 0% { transform: perspective(400px) rotateY(0deg); } 100% { transform: perspective(400px) rotateY(360deg); } } .is-anim-flip { animation: is-flip 1s linear infinite; }",
-"is-anim-pop":"@keyframes is-pop { 0% { transform: scale(0.9); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } } .is-anim-pop { animation: is-pop 0.45s ease-out; }",
-"is-anim-flicker":"@keyframes is-flicker { 0%, 19.999%, 22%, 62.999%, 64%, 100% { opacity: 1; } 20%, 21.999%, 63%, 63.999% { opacity: 0.3; } } .is-anim-flicker { animation: is-flicker 2s infinite; }"
+"is-anim-pulse":{"keyframes": "@keyframes is-pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }","class":".is-anim-pulse { animation: is-pulse 1s ease-in-out infinite alternate; }"},
+"is-anim-blink":{"keyframes": "@keyframes is-blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }","class": ".is-anim-blink { animation: is-blink 0.5s ease-in-out infinite alternate; }"},
+"is-anim-ping":{"keyframes": "@keyframes is-ping { 75%, 100% { transform: scale(2); opacity: 0; } }","class": ".is-anim-ping { animation: is-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }"},
+"is-anim-spin":{"keyframes": "@keyframes is-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }","class": ".is-anim-spin { animation: is-spin 2s linear infinite; }"},
+"is-anim-bounce":{"keyframes": "@keyframes is-bounce { 0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); } 50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); } }","class": ".is-anim-bounce { animation: is-bounce 1s infinite; }"},
+"is-anim-shake":{"keyframes": "@keyframes is-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }","class": ".is-anim-shake { animation: is-shake 0.5s infinite; }"},
+"is-anim-wiggle":{"keyframes": "@keyframes is-wiggle { 0%, 50%, 100% { transform: rotate(0deg); } 25% { transform: rotate(10deg); } 75% { transform: rotate(-10deg); } }","class": ".is-anim-wiggle { animation: is-wiggle 1s ease-in-out infinite; }"},
+"is-anim-flip":{"keyframes": "@keyframes is-flip { 0% { transform: perspective(400px) rotateY(0deg); } 100% { transform: perspective(400px) rotateY(360deg); } }","class": ".is-anim-flip { animation: is-flip 1s linear infinite; }"},
+"is-anim-pop":{"keyframes": "@keyframes is-pop { 0% { transform: scale(0.9); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }","class": ".is-anim-pop { animation: is-pop 0.45s ease-out; }"},
+"is-anim-flicker":{"keyframes": "@keyframes is-flicker { 0%, 19.999%, 22%, 62.999%, 64%, 100% { opacity: 1; } 20%, 21.999%, 63%, 63.999% { opacity: 0.3; } }","class": ".is-anim-flicker { animation: is-flicker 2s infinite; }"}
 }   

@@ -36,15 +36,28 @@ function buildCSS(content) {
   }
 
   let cssOutput = `@font-face {font-family: 'IconForge';src: url('iconforge.woff2') format('woff2');font-style: normal;font-display: block;}[class^="if-"], [class*=" if-"] {font-family: 'IconForge' !important;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}\n`;
+  const keyframes = new Set();
+  let mainOutput = '';
 
   for (let cls of usedClasses) {
     if (iconsMeta[cls]) {
-      cssOutput += iconsMeta[cls] + '\n';
+      mainOutput += iconsMeta[cls] + '\n';
     }
     if (stylesMeta[cls]) {
-      cssOutput += stylesMeta[cls] + '\n';
+      const style = stylesMeta[cls];
+      if (typeof style === 'object' && style.class) {
+        if (style.keyframes) {
+          keyframes.add(style.keyframes);
+        }
+        mainOutput += style.class + '\n';
+      } else if (typeof style === 'string') {
+        mainOutput += style + '\n';
+      }
     }
   }
+
+  cssOutput += Array.from(keyframes).join('\n') + '\n';
+  cssOutput += mainOutput;
 
   if (fs.existsSync(CONFIG_FILE)) {
     try {
