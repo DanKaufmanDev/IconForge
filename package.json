@@ -1,10 +1,19 @@
 {
   "name": "iconforged",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Frontend icon library. Bridging the gap between traditional icons and modern workflows.",
   "main": "dist/iconforge.js",
+  "bin": {
+    "iconforge": "bin/iconforge-cli.js"
+  },
+  "jsdelivr": "dist/iconforge.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "min": "terser dist/iconforge.js -o dist/iconforge.min.js --compress --mangle",
+    "prepare": "npm run min",
+    "if-init": "node bin/iconforge-cli.js init",
+    "if-build": "node bin/iconforge-cli.js build '**/*.{html,js,ts,vue,jsx,tsx}'",
+    "if-watch": "node ./bin/iconforge-cli.js watch '**/*.{html,js,ts,vue,jsx,tsx}'"
   },
   "repository": {
     "type": "git",
@@ -21,7 +30,13 @@
   },
   "homepage": "https://github.com/DanKaufmanDev/IconForge#readme",
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
-  "jsdelivr": "dist/iconforge.js"
+  "devDependencies": {
+    "chokidar": "^3.6.0",
+    "fs-extra": "^10.1.0",
+    "glob": "^7.2.3",
+    "subset-font": "^2.4.0"
+  }
 }
