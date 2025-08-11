@@ -1,7 +1,7 @@
 (() => {
   const VERSION = '1.1.4';
   // const CDN = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
-  const CDN = '/dist;'
+  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@e2ad39d/dist/';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
