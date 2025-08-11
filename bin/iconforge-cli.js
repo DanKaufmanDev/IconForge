@@ -12,8 +12,8 @@ const META_ICONS = path.join(DIST_DIR, 'meta/iconforge-icons.json');
 const META_STYLES = path.join(DIST_DIR, 'meta/iconforge-styles.json');
 
 const OUTPUT_DIR = path.join(process.cwd(), 'iconforge-output');
-const OUTPUT_CSS = path.join(OUTPUT_DIR, 'iconforge.output.css');
-const OUTPUT_WOFF2 = path.join(OUTPUT_DIR, 'iconforge.output.woff2');
+const OUTPUT_CSS = path.join(OUTPUT_DIR, 'iconforge.css');
+const OUTPUT_WOFF2 = path.join(OUTPUT_DIR, 'iconforge.woff2');
 
 const TEMP_DIR = path.join(os.tmpdir(), 'iconforge-subset');
 const CONFIG_FILE = path.join(process.cwd(), 'iconforge.config.js');
@@ -25,7 +25,7 @@ function buildCSS(content) {
 
   const usedClasses = new Set();
 
-  const regex = /class\s*=\s*["'](.*?)["']/gms;
+  const regex = /class\s*=\s*["'`](.*?)["'`]/gms;
   let match;
   while ((match = regex.exec(content)) !== null) {
     match[1].split(/\s+/).forEach(cls => {
@@ -35,24 +35,32 @@ function buildCSS(content) {
     });
   }
 
-  let cssOutput = "@font-face { font-family: 'IconForge'; src: url('./iconforge.output.woff2') format('woff2'); font-display: block; font-weight: normal; font-style: normal; }[class^='if-'], [class*='if-'] { font-family: 'IconForge' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }"
-  const keyframes = new Set();
+  let cssOutput = `@font-face {font-family: 'IconForge';src: url('iconforge.woff2') format('woff2');font-style: normal;font-display: block;}[class^="if-"], [class*=" if-"] {font-family: 'IconForge' !important;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}\n`;
 
   for (let cls of usedClasses) {
-    if (cls.startsWith('if-') && iconsMeta[cls]) {
+    if (iconsMeta[cls]) {
       cssOutput += iconsMeta[cls] + '\n';
     }
-    if (cls.startsWith('is-') && stylesMeta[cls]) {
-        const style = stylesMeta[cls];
-        if (typeof style === 'string') {
-            cssOutput += style + '\n';
-        } else if (typeof style === 'object' && style.class) {
-            if(style.keyframes && !keyframes.has(style.keyframes)) {
-                cssOutput += style.keyframes + '\n';
-                keyframes.add(style.keyframes);
-            }
-            cssOutput += style.class + '\n';
+    if (stylesMeta[cls]) {
+      cssOutput += stylesMeta[cls] + '\n';
+    }
+  }
+
+  if (fs.existsSync(CONFIG_FILE)) {
+    try {
+        const config = require(CONFIG_FILE);
+        if (config.customCSS && Array.isArray(config.customCSS)) {
+            config.customCSS.forEach(customFile => {
+                const customFilePath = path.resolve(process.cwd(), customFile);
+                if (fs.existsSync(customFilePath)) {
+                    cssOutput += fs.readFileSync(customFilePath, 'utf-8') + '\n';
+                } else {
+                    console.warn(`Warning: Custom CSS file not found: ${customFilePath}`);
+                }
+            });
         }
+    } catch (e) {
+        console.error("Error reading or parsing iconforge.config.js for customCSS", e);
     }
   }
 
@@ -64,6 +72,7 @@ function buildCSS(content) {
 
 async function subsetWOFF2(usedClasses) {
   try {
+    
     const iconsMeta = JSON.parse(await fs.readFile(META_ICONS, 'utf-8'));
     
     const unicodes = usedClasses
@@ -100,6 +109,7 @@ async function subsetWOFF2(usedClasses) {
     
   } catch (err) {
     console.error('Error during font subsetting:', err);
+    
     await fs.copyFile(path.join(DIST_DIR, 'iconforge.woff2'), OUTPUT_WOFF2);
   }
 }
@@ -113,6 +123,7 @@ function runInit() {
     content: [
         './**/*.{html,js,ts,vue,jsx,tsx}',
     ],
+    customCSS: ['./src/styles.css'],
 };
 `;
     fs.writeFileSync(CONFIG_FILE, configContent);
@@ -140,10 +151,12 @@ function getInputGlob(cliArgs) {
 
 
 function runBuild(inputGlob) {
-  const files = glob.sync(inputGlob, { nodir: true, ignore: ['node_modules/**'] });
+  const patterns = [].concat(inputGlob);
+  const files = patterns.flatMap(pattern => glob.sync(pattern, { nodir: true, ignore: ['node_modules/**'] }));
+
   let combinedContent = '';
 
-  files.forEach(file => {
+  [...new Set(files)].forEach(file => {
     combinedContent += fs.readFileSync(file, 'utf-8') + '\n';
   });
 
