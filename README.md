@@ -36,18 +36,22 @@ Place the following script tag in the `<head>` section of your HTML file.
 <script src="https://cdn.jsdelivr.net/npm/iconforged@latest"></script>
 ```
 
-### Method 2: NPM / CLI (Build-Time)
+### Method 2: IconForge CLI (Build-Time)
 
 For a more robust, production-ready setup, you can install the IconForge CLI.
 
-**1. Initialize your project:**
+**1. Install IconForge**
+```bash
+npm i iconforged
+```
+**2. Initialize your project:**
 
 Run the `init` command to initialize the project and create a default `iconforge.config.js` file in your project root.
 ```bash
 npx iconforged init
 ```
 
-**2. Start the build process:**
+**3. Start the build process:**
 
 Use the `build` command to perform a one-time scan and generate your CSS. Use `watch` to automatically rebuild as you make changes.
 ```bash
@@ -59,7 +63,7 @@ npx iconforged watch
 ```
 This will generate an `iconforge-output` directory containing your `iconforge.css` and `iconforge.woff2` files.
 
-**3. Link the generated stylesheet in your HTML:**
+**4. Link the generated stylesheet in your HTML:**
 
 Copy the following `<link>` tag into the `<head>` of your HTML file. The path should be relative to your HTML file.
 
