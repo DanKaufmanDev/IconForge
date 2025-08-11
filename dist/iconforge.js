@@ -114,30 +114,46 @@
   };
 
   const injectStyles = () => {
-    let newStyles = '';
+    let keyframes = '';
+    let classes = '';
     
     usedIf.forEach(cls => {
       if (!injected.has(cls) && iconsMeta[cls]) {
-        newStyles += iconsMeta[cls];
+        classes += iconsMeta[cls] + '\n';
         injected.add(cls);
       }
     });
 
     usedIs.forEach(cls => {
       if (!injected.has(cls) && stylesMeta[cls]) {
-        newStyles += stylesMeta[cls];
+        const style = stylesMeta[cls];
+        if (typeof style === 'object' && style.class) {
+          if (style.keyframes) {
+            // Avoid duplicate keyframes
+            if (!injected.has(style.keyframes)) {
+              keyframes += style.keyframes + '\n';
+              injected.add(style.keyframes);
+            }
+          }
+          classes += style.class + '\n';
+        } else if (typeof style === 'string') {
+          classes += style + '\n';
+        }
         injected.add(cls);
       }
     });
 
+    const newStyles = keyframes + classes;
+
     if (newStyles) {
       requestAnimationFrame(() => {
-        if (!style.nextElementSibling || !style.nextElementSibling.classList.contains('iconforge-dynamic')) {
-          const dynamicStyle = document.createElement('style');
+        let dynamicStyle = document.querySelector('.iconforge-dynamic');
+        if (!dynamicStyle) {
+          dynamicStyle = document.createElement('style');
           dynamicStyle.classList.add('iconforge-dynamic');
           style.after(dynamicStyle);
         }
-        style.nextElementSibling.textContent = newStyles;
+        dynamicStyle.textContent += newStyles;
       });
     }
   };
