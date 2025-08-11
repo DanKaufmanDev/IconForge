@@ -1,4 +1,5 @@
 (() => {
+  const VERSION = '1.1.5';
   const CDN = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
@@ -14,6 +15,13 @@
   let iconsMeta = {};
   let stylesMeta = {};
 
+  const metrics = {
+    loadStart: performance.now(),
+    fontLoaded: false,
+    metaLoaded: false,
+    errors: 0
+  };
+
   const preloadFont = () => {
     const link = document.createElement('link');
     link.rel = 'preload';
@@ -25,7 +33,7 @@
   };
 
   const injectFontFace = () => {
-    const css = `/* Injected by IconForge */ 
+    const css = `/* Injected by IconForge */
 @font-face { font-family: '${FONT_NAME}'; src: url('${FONT_URL}') format('woff2'); font-display: block; font-weight: normal; font-style: normal; }`;
     style.textContent = css;
   };
@@ -36,49 +44,117 @@
   };
   
   const fetchMeta = async () => {
-    const [icons, styles] = await Promise.all([
-      fetch(META_ICONS_URL).then(res => res.json()),
-      fetch(META_STYLES_URL).then(res => res.json()),
-    ]);
-    iconsMeta = icons;
-    stylesMeta = styles;
+    try {
+      const cachedIcons = sessionStorage.getItem('iconforge_icons');
+      const cachedStyles = sessionStorage.getItem('iconforge_styles');
+      
+      if (cachedIcons && cachedStyles) {
+        iconsMeta = JSON.parse(cachedIcons);
+        stylesMeta = JSON.parse(cachedStyles);
+        return;
+      }
+
+      const start = performance.now();
+      const [icons, styles] = await Promise.all([
+        fetchWithRetry(META_ICONS_URL, { priority: 'high' }),
+        fetchWithRetry(META_STYLES_URL, { priority: 'high' })
+      ]);
+      
+      metrics.metaLoaded = true;
+      metrics.metaLoadTime = performance.now() - start;
+      
+      safeSave('iconforge_icons', icons);
+      safeSave('iconforge_styles', styles);
+      
+      iconsMeta = icons;
+      stylesMeta = styles;
+    } catch (err) {
+      metrics.errors++;
+      console.warn('IconForge: Failed to load meta data, falling back to defaults', err);
+      iconsMeta = {};
+      stylesMeta = {};
+    }
   };
 
   const scanNode = (node) => {
     if (node.nodeType !== Node.ELEMENT_NODE) return;
 
     const scanElement = (el) => {
-        el.classList.forEach(cls => {
-            if (cls.startsWith('if-')) usedIf.add(cls);
-            else if (cls.startsWith('is-')) usedIs.add(cls);
+        const classes = el.className;
+        if (typeof classes !== 'string') return;
+        
+        classes.split(' ').forEach(cls => {
+            if (cls.startsWith('if-')) {
+                usedIf.add(cls);
+            } else if (cls.startsWith('is-')) {
+                usedIs.add(cls);
+            }
         });
     };
 
-    if (node.hasAttribute('class')) {
-        scanElement(node);
-    }
+    scanElement(node);
 
-    node.querySelectorAll('[class]').forEach(scanElement);
+    const walker = document.createTreeWalker(
+        node,
+        NodeFilter.SHOW_ELEMENT,
+        {
+            acceptNode: (node) => {
+                return node.className && 
+                       (node.className.includes('if-') || node.className.includes('is-')) 
+                       ? NodeFilter.FILTER_ACCEPT 
+                       : NodeFilter.FILTER_SKIP;
+            }
+        }
+    );
+
+    while (walker.nextNode()) {
+        scanElement(walker.currentNode);
+    }
   };
 
   const injectStyles = () => {
-    let css = '';
-
+    let keyframes = '';
+    let classes = '';
+    
     usedIf.forEach(cls => {
       if (!injected.has(cls) && iconsMeta[cls]) {
-        css += iconsMeta[cls] + '';
+        classes += iconsMeta[cls] + '\n';
         injected.add(cls);
       }
     });
 
     usedIs.forEach(cls => {
       if (!injected.has(cls) && stylesMeta[cls]) {
-        css += stylesMeta[cls] + '';
+        const style = stylesMeta[cls];
+        if (typeof style === 'object' && style.class) {
+          if (style.keyframes) {
+            // Avoid duplicate keyframes
+            if (!injected.has(style.keyframes)) {
+              keyframes += style.keyframes + '\n';
+              injected.add(style.keyframes);
+            }
+          }
+          classes += style.class + '\n';
+        } else if (typeof style === 'string') {
+          classes += style + '\n';
+        }
         injected.add(cls);
       }
     });
 
-    if (css) style.textContent += css;
+    const newStyles = keyframes + classes;
+
+    if (newStyles) {
+      requestAnimationFrame(() => {
+        let dynamicStyle = document.querySelector('.iconforge-dynamic');
+        if (!dynamicStyle) {
+          dynamicStyle = document.createElement('style');
+          dynamicStyle.classList.add('iconforge-dynamic');
+          style.after(dynamicStyle);
+        }
+        dynamicStyle.textContent += newStyles;
+      });
+    }
   };
 
   const run = async () => {
@@ -86,15 +162,19 @@
     scanNode(document.documentElement);
     injectStyles();
 
+    let timeout;
     const observer = new MutationObserver((mutations) => {
-        mutations.forEach(mutation => {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(scanNode);
-            } else if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                scanNode(mutation.target);
-            }
-        });
-        injectStyles();
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            mutations.forEach(mutation => {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(scanNode);
+                } else if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    scanNode(mutation.target);
+                }
+            });
+            injectStyles();
+        }, 16);
     });
 
     observer.observe(document.documentElement, {
@@ -105,9 +185,42 @@
     });
   };
 
+  const fetchWithRetry = async (url, options, retries = 3) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const res = await fetch(url, options);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      } catch (err) {
+        if (i === retries - 1) throw err;
+        await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
+      }
+    }
+  };
+
+  const addResourceHints = () => {
+    const hint = document.createElement('link');
+    hint.rel = 'preconnect';
+    hint.href = new URL(CDN).origin;
+    hint.crossOrigin = 'anonymous';
+    document.head.appendChild(hint);
+  };
+
+  const safeSave = (key, data) => {
+    try {
+      const serialized = JSON.stringify(data);
+      if (serialized.length > 2097152) return false;
+      sessionStorage.setItem(key, serialized);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
   preloadFont();
   injectFontFace();
   injectClass();
+  addResourceHints();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);

@@ -1,4 +1,8 @@
 *.log
 .DS_Store
-*.html
 *.css
+*.html
+*config.js
+node_modules/
+iconforge-output/
+.vscode/
