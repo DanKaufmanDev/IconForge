@@ -432,6 +432,8 @@
 "is-w-half": ".is-w-half { width: 50%; }",
 "is-w-quarter": ".is-w-quarter { width: 25%; }",
 
+"is-sq": ".is-sq { height: auto; width: auto; }",
+
 "is-rot-45": ".is-rot-45 { rotate: 45deg; }",
 "is-rot-90": ".is-rot-90 { rotate: 90deg; }",
 "is-rot-135": ".is-rot-135 { rotate: 135deg; }",
