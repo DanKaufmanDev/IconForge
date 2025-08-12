@@ -40,25 +40,21 @@ Place the following script tag in the `<head>` section of your HTML file.
 
 For a more robust, production-ready setup, you can install the IconForge CLI.
 
-**1. Install IconForge**
-```bash
-npm i iconforged
-```
-**2. Initialize your project:**
+**1. Initialize your project:**
 
 Run the `init` command to initialize the project and create a default `iconforge.config.js` file in your project root.
 ```bash
 npx iconforged init
 ```
 
-**3. Start the build process:**
+**2. Start the build process:**
 
 Use the `build` command to perform a one-time scan and generate your CSS. Use `watch` to automatically rebuild as you make changes.
 ```bash
-# One-time build
 npx iconforged build
 
-# Watch for changes
+```
+```bash
 npx iconforged watch
 ```
 This will generate an `iconforge-output` directory containing your `iconforge.css` and `iconforge.woff2` files.
@@ -94,7 +90,7 @@ module.exports = {
         './**/*.{html,js,ts,vue,jsx,tsx}',
     ],
     // Custom CSS files to append to the output
-    customCSS: [],
+    customCSS: ['styles.css'],
 };
 ```
 
