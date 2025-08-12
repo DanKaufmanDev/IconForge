@@ -35,7 +35,7 @@ function buildCSS(content) {
     });
   }
 
-  let cssOutput = `@font-face {font-family: 'IconForge';src: url('iconforge.woff2') format('woff2');font-style: normal;font-display: block;}[class^="if-"], [class*=" if-"] {font-family: 'IconForge' !important;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}\n`;
+  let cssOutput = `@font-face {font-family: 'IconForge'; src: url('iconforge.woff2') format('woff2'); font-style: normal; font-display: block; }[class^="if-"], [class*=" if-"] { font-family: 'IconForge' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n`;
   const keyframes = new Set();
   const styles = [];
 
