@@ -11,7 +11,7 @@
 
 IconForge is a performance-focused, utility-style icon framework that lets you load **only the icons you need**.
 Powered by a JIT (Just-In-Time) compiler, IconForge tree-shakes unused icons, dynamically injects CSS at runtime,
-and delivers blazing-fast performance — whether you use it via CDN or as an npm package.
+and delivers blazing-fast performance — whether you use it via CDN or IconForge CLI.
 
 ## Features
 
