@@ -19,7 +19,7 @@ and delivers blazing-fast performance — whether you use it via CDN or IconForg
 *   **Tree-Shaking by Default:** Unused icons are automatically removed, resulting in the smallest possible footprint.
 *   **Utility-First Classes:** A rich set of utility classes allows you to customize icon size, color, rotation, and animations directly in your HTML. Fully compatible with both CDN and CLI methods.
 *   **IDE Integration:** The official IconForge IntelliSense extension for VS Code provides autocompletion, icon previews, and CSS snippets right in your editor.
-*   **NPM and CDN:** Use IconForge as a standard npm package or drop the CDN link into your project to get started instantly.
+*   **CLI or CDN:** Use IconForge CLI or drop the CDN link into your project to get started instantly.
 *   **Huge Library:** A massive library of icons for every need, from UI elements to popular brand logos.
 
 ## Getting Started
