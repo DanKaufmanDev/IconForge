@@ -1,14 +1,22 @@
 (() => {
   const VERSION = '1.1.6';
-  const CDN = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
+  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@cdn-2/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
   const META_STYLES_URL = `${CDN}/meta/iconforge-styles.json`;
 
+  const responsiveBreakpoints = {
+    'xs:': '(min-width: 420px)',
+    'sm:': '(min-width: 640px)',
+    'md:': '(min-width: 768px)',
+    'lg:': '(min-width: 1024px)',
+    'xl:': '(min-width: 1280px)',
+  };
+  const variantPrefixes = ['hover:', 'focus:', 'active:', 'dark:', ...Object.keys(responsiveBreakpoints)];
+
   const usedIf = new Set();
   const usedIs = new Set();
-  const injected = new Set();
   const style = document.createElement('style');
   document.head.appendChild(style);
 
@@ -21,6 +29,11 @@
     metaLoaded: false,
     errors: 0
   };
+
+  function escapeSelector(selector) {
+    if (typeof selector !== 'string') return '';
+    return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\]^`{|}~])/g, '\\$1');
+  }
 
   const preloadFont = () => {
     const link = document.createElement('link');
@@ -84,9 +97,16 @@
         if (typeof classes !== 'string') return;
         
         classes.split(' ').forEach(cls => {
-            if (cls.startsWith('if-')) {
+            if (!cls) return;
+            let baseClass = cls;
+            const variant = variantPrefixes.find(v => cls.startsWith(v));
+            if (variant) {
+                baseClass = cls.slice(variant.length);
+            }
+
+            if (baseClass.startsWith('if-')) {
                 usedIf.add(cls);
-            } else if (cls.startsWith('is-')) {
+            } else if (baseClass.startsWith('is-')) {
                 usedIs.add(cls);
             }
         });
@@ -94,18 +114,11 @@
 
     scanElement(node);
 
-    const walker = document.createTreeWalker(
-        node,
-        NodeFilter.SHOW_ELEMENT,
-        {
-            acceptNode: (node) => {
-                return node.className && 
-                       (node.className.includes('if-') || node.className.includes('is-')) 
-                       ? NodeFilter.FILTER_ACCEPT 
-                       : NodeFilter.FILTER_SKIP;
-            }
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT, {
+        acceptNode: (node) => {
+            return node.hasAttribute('class') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
         }
-    );
+    });
 
     while (walker.nextNode()) {
         scanElement(walker.currentNode);
@@ -113,37 +126,104 @@
   };
 
   const injectStyles = () => {
-    let keyframes = '';
-    let classes = '';
-    
-    usedIf.forEach(cls => {
-      if (!injected.has(cls) && iconsMeta[cls]) {
-        classes += iconsMeta[cls] + '\n';
-        injected.add(cls);
-      }
-    });
+    const stylesByMedia = { default: [] };
+    const keyframes = new Set();
+    const allUsedClasses = [...usedIf, ...usedIs];
 
-    usedIs.forEach(cls => {
-      if (!injected.has(cls) && stylesMeta[cls]) {
-        const style = stylesMeta[cls];
-        if (typeof style === 'object' && style.class) {
-          if (style.keyframes) {
-            if (!injected.has(style.keyframes)) {
-              keyframes += style.keyframes + '\n';
-              injected.add(style.keyframes);
-            }
-          }
-          classes += style.class + '\n';
-        } else if (typeof style === 'string') {
-          classes += style + '\n';
+    for (const cls of allUsedClasses) {
+      let baseClass = cls;
+      let variantCSS = '';
+      let prefix = '';
+      let mediaQuery = 'default';
+
+      const variant = variantPrefixes.find(v => cls.startsWith(v));
+      if (variant) {
+        baseClass = cls.slice(variant.length);
+        if (variant === 'hover:') variantCSS = ':hover';
+        else if (variant === 'focus:') variantCSS = ':focus';
+        else if (variant === 'active:') variantCSS = ':active';
+        else if (variant === 'dark:') { prefix = '.dark ';
+        } else if (responsiveBreakpoints[variant]) {
+          mediaQuery = `@media ${responsiveBreakpoints[variant]}`;
         }
-        injected.add(cls);
       }
+
+      let rule = null;
+      
+      const arbitraryMatch = baseClass.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx))-\[(.+)\]$/);
+      if (arbitraryMatch) {
+        const [, type, value] = arbitraryMatch;
+        let properties = '';
+        switch (type) {
+            case 'is-color': properties = `color: ${value};`; break;
+            case 'is-bg': properties = `background-color: ${value};`; break;
+            case 'is-w': properties = `width: ${value};`; break;
+            case 'is-h': properties = `height: ${value};`; break;
+            case 'is-sq': properties = `width: ${value}; height: ${value};`; break;
+            case 'is-size': properties = `font-size: ${value};`; break;
+            case 'is-p': properties = `padding: ${value};`; break;
+            case 'is-pt': properties = `padding-top: ${value};`; break;
+            case 'is-pr': properties = `padding-right: ${value};`; break;
+            case 'is-pb': properties = `padding-bottom: ${value};`; break;
+            case 'is-pl': properties = `padding-left: ${value};`; break;
+            case 'is-px': properties = `padding-left: ${value}; padding-right: ${value};`; break;
+            case 'is-py': properties = `padding-top: ${value}; padding-bottom: ${value};`; break;
+            case 'is-m': properties = `margin: ${value};`; break;
+            case 'is-mt': properties = `margin-top: ${value};`; break;
+            case 'is-mr': properties = `margin-right: ${value};`; break;
+            case 'is-mb': properties = `margin-bottom: ${value};`; break;
+            case 'is-ml': properties = `margin-left: ${value};`; break;
+            case 'is-mx': properties = `margin-left: ${value}; margin-right: ${value};`; break;
+            case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
+        }
+        if (properties) {
+          rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+        }
+      } else if (stylesMeta[baseClass]) {
+        const styleData = stylesMeta[baseClass];
+        let properties = '';
+        if (typeof styleData === 'object' && styleData.class) {
+          if (styleData.keyframes) {
+            keyframes.add(styleData.keyframes);
+          }
+          const match = styleData.class.match(/{([^}]+)}/);
+          properties = match ? match[1].trim() : styleData.class;
+        } else if (typeof styleData === 'string') {
+          const match = styleData.match(/{([^}]+)}/);
+          properties = match ? match[1].trim() : styleData;
+        }
+        if (properties) {
+          rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+        }
+      } else if (iconsMeta[baseClass]) {
+        const iconData = iconsMeta[baseClass];
+        if (typeof iconData === 'string') {
+            const match = iconData.match(/{([^}]+)}/);
+            const properties = match ? match[1].trim() : iconData;
+            if (properties) {
+              rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
+            }
+        }
+      }
+
+      if (rule) {
+        if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = [];
+        stylesByMedia[mediaQuery].push(rule);
+      }
+    }
+
+    let newCSSText = Array.from(keyframes).join('\n');
+    if (stylesByMedia.default.length) {
+        newCSSText += '\n' + stylesByMedia.default.join('\n');
+    }
+    Object.keys(responsiveBreakpoints).forEach(bpKey => {
+        const mq = `@media ${responsiveBreakpoints[bpKey]}`;
+        if (stylesByMedia[mq] && stylesByMedia[mq].length) {
+            newCSSText += `\n${mq} {\n  ${stylesByMedia[mq].join('\n  ')}\n}`;
+        }
     });
 
-    const newStyles = keyframes + classes;
-
-    if (newStyles) {
+    if (newCSSText) {
       requestAnimationFrame(() => {
         let dynamicStyle = document.querySelector('.iconforge-dynamic');
         if (!dynamicStyle) {
@@ -151,7 +231,9 @@
           dynamicStyle.classList.add('iconforge-dynamic');
           style.after(dynamicStyle);
         }
-        dynamicStyle.textContent += newStyles;
+        if (dynamicStyle.textContent !== newCSSText) {
+            dynamicStyle.textContent = newCSSText;
+        }
       });
     }
   };
