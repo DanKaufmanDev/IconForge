@@ -78,7 +78,19 @@ Using an icon is as simple as adding an `<i>` tag with the appropriate class nam
 <!-- Styled Icon -->
 <i class="if-heart is-color-red-5 is-size-2xl is-anim-pulse"></i>
 ```
+Use prefix's like `dark:` `hover:` to dynamically change your icon
+```html
+<!-- Dynamic Icon -->
+<i class="if-bulb is-color-white dark:is-color-amber-4 is-size-2xl hover:is-anim-pop"></I>
+```
+IconForge support arbitrary value handling simply place the value between square brackets `[VALUE]`
+```html
+<!-- Arbitrary Icon-->
+<button class="is-sq hover:is-clickable">
+    <i class="if-iconforge is-color-[#ffad8c] is-size-[64px]"></i>
+</button>
 
+```
 ## Configuration
 
 The `iconforge.config.js` file allows you to control which files are scanned for icon classes.
