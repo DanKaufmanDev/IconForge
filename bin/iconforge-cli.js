@@ -27,34 +27,40 @@ function buildCSS(content) {
   const stylesMeta = JSON.parse(fs.readFileSync(META_STYLES, 'utf-8'));
 
   const usedClasses = new Set();
-  const variantPrefixes = ['hover:', 'focus:', 'active:', 'dark:'];
+  const responsiveBreakpoints = {
+    'xs:': '(min-width: 420px)',
+    'sm:': '(min-width: 640px)',
+    'md:': '(min-width: 768px)',
+    'lg:': '(min-width: 1024px)',
+    'xl:': '(min-width: 1280px)',
+  };
+  const variantPrefixes = ['hover:', 'focus:', 'active:', 'dark:', ...Object.keys(responsiveBreakpoints)];
 
   const regex = /class\s*=\s*["'`](.*?)["'`]/gms;
   let match;
   while ((match = regex.exec(content)) !== null) {
     match[1].split(/\s+/).forEach(cls => {
       let baseClass = cls;
-
       const variant = variantPrefixes.find(v => cls.startsWith(v));
       if (variant) {
         baseClass = cls.slice(variant.length);
       }
-
       if (baseClass.startsWith('if-') || baseClass.startsWith('is-')) {
         usedClasses.add(cls);
       }
     });
   }
 
-  let cssOutput = `@font-face {font-family: 'IconForge'; src: url('iconforge.woff2') format('woff2'); font-style: normal; font-display: block; }[class^="if-"], [class*=" if-"] { font-family: 'IconForge' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n`;
+  let cssOutput = `@font-face {font-family: 'IconForge'; src: url('iconforge.woff2') format('woff2'); font-style: normal; font-display: block; }\n[class^="if-"], [class*=" if-"] { font-family: 'IconForge' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n`;
 
   const keyframesSet = new Set();
-  const stylesSet = new Set();
+  const stylesByMedia = { default: new Set() };
 
   for (let cls of usedClasses) {
     let baseClass = cls;
     let variantCSS = '';
     let prefix = '';
+    let mediaQuery = 'default';
 
     const variant = variantPrefixes.find(v => cls.startsWith(v));
     if (variant) {
@@ -64,131 +70,94 @@ function buildCSS(content) {
       else if (variant === 'active:') variantCSS = ':active';
       else if (variant === 'dark:') {
         prefix = '.dark ';
-        variantCSS = '';
+      } else if (responsiveBreakpoints[variant]) {
+        mediaQuery = `@media ${responsiveBreakpoints[variant]}`;
       }
     }
+
+    let rule = null;
 
     const arbitraryMatch = baseClass.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx))-\[(.+)\]$/);
-
     if (arbitraryMatch) {
       const [, type, value] = arbitraryMatch;
-      const escapedClass = escapeSelector(cls);
-
-      let rule = "";
-
+      let properties = '';
       switch (type) {
-        case 'is-color':
-          rule = `color: ${value};`;
-          break;
-        case 'is-bg':
-          rule = `background-color: ${value};`;
-          break;
-
-        case 'is-w':
-          rule = `width: ${value};`;
-          break;
-        case 'is-h':
-          rule = `height: ${value};`;
-          break;
-        case 'is-sq':
-          rule = `width: ${value}; height: ${value};`;
-          break;
-        case 'is-size':
-          rule = `font-size: ${value};`;
-          break;
-
-        case 'is-p':
-          rule = `padding: ${value};`;
-          break;
-        case 'is-pt':
-          rule = `padding-top: ${value};`;
-          break;
-        case 'is-pr':
-          rule = `padding-right: ${value};`;
-          break;
-        case 'is-pb':
-          rule = `padding-bottom: ${value};`;
-          break;
-        case 'is-pl':
-          rule = `padding-left: ${value};`;
-          break;
-        case 'is-px':
-          rule = `padding-left: ${value}; padding-right: ${value};`;
-          break;
-        case 'is-py':
-          rule = `padding-top: ${value}; padding-bottom: ${value};`;
-          break;
-
-        case 'is-m':
-          rule = `margin: ${value};`;
-          break;
-        case 'is-mt':
-          rule = `margin-top: ${value};`;
-          break;
-        case 'is-mr':
-          rule = `margin-right: ${value};`;
-          break;
-        case 'is-mb':
-          rule = `margin-bottom: ${value};`;
-          break;
-        case 'is-ml':
-          rule = `margin-left: ${value};`;
-          break;
-        case 'is-mx':
-          rule = `margin-left: ${value}; margin-right: ${value};`;
-          break;
-        case 'is-my':
-          rule = `margin-top: ${value}; margin-bottom: ${value};`;
-          break;
+        case 'is-color': properties = `color: ${value};`; break;
+        case 'is-bg': properties = `background-color: ${value};`; break;
+        case 'is-w': properties = `width: ${value};`; break;
+        case 'is-h': properties = `height: ${value};`; break;
+        case 'is-sq': properties = `width: ${value}; height: ${value};`; break;
+        case 'is-size': properties = `font-size: ${value};`; break;
+        case 'is-p': properties = `padding: ${value};`; break;
+        case 'is-pt': properties = `padding-top: ${value};`; break;
+        case 'is-pr': properties = `padding-right: ${value};`; break;
+        case 'is-pb': properties = `padding-bottom: ${value};`; break;
+        case 'is-pl': properties = `padding-left: ${value};`; break;
+        case 'is-px': properties = `padding-left: ${value}; padding-right: ${value};`; break;
+        case 'is-py': properties = `padding-top: ${value}; padding-bottom: ${value};`; break;
+        case 'is-m': properties = `margin: ${value};`; break;
+        case 'is-mt': properties = `margin-top: ${value};`; break;
+        case 'is-mr': properties = `margin-right: ${value};`; break;
+        case 'is-mb': properties = `margin-bottom: ${value};`; break;
+        case 'is-ml': properties = `margin-left: ${value};`; break;
+        case 'is-mx': properties = `margin-left: ${value}; margin-right: ${value};`; break;
+        case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
       }
-
-      if (rule) {
-        stylesSet.add(`${prefix}.${escapedClass}${variantCSS} { ${rule} }`);
-      }
-      
-      continue;
-    }
-
-    const style = stylesMeta[baseClass];
-    if (style) {
-      let properties = '';
-      let ruleSrc = '';
-      if (typeof style === 'object' && style !== null) {
-        if (style.keyframes) keyframesSet.add(style.keyframes);
-        ruleSrc = style.class || '';
-      } else {
-        ruleSrc = style || '';
-      }
-
-      const match = typeof ruleSrc === 'string' ? ruleSrc.match(/{([^}]+)}/) : null;
-      properties = match ? match[1].trim() : ruleSrc;
-
       if (properties) {
-        stylesSet.add(`${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`);
+        rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
       }
-    } else if (iconsMeta[baseClass]) {
-      const iconStyle = iconsMeta[baseClass];
-      let properties = '';
-      let fullRule = '';
-
-      if (typeof iconStyle === 'object' && iconStyle.value) {
-        fullRule = iconStyle.value;
-      } else if (typeof iconStyle === 'string') {
-        fullRule = iconStyle;
-      }
-
-      if (fullRule) {
-        const match = fullRule.match(/{([^}]+)}/);
-        if (match) {
-          properties = match[1].trim();
-          stylesSet.add(`${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`);
+    } else {
+      const style = stylesMeta[baseClass];
+      if (style) {
+        let properties = '';
+        let ruleSrc = '';
+        if (typeof style === 'object' && style !== null) {
+          if (style.keyframes) keyframesSet.add(style.keyframes);
+          ruleSrc = style.class || '';
+        } else {
+          ruleSrc = style || '';
+        }
+        const match = typeof ruleSrc === 'string' ? ruleSrc.match(/{([^}]+)}/) : null;
+        properties = match ? match[1].trim() : ruleSrc;
+        if (properties) {
+          rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+        }
+      } else if (iconsMeta[baseClass]) {
+        const iconStyle = iconsMeta[baseClass];
+        let properties = '';
+        let fullRule = '';
+        if (typeof iconStyle === 'object' && iconStyle.value) {
+          fullRule = iconStyle.value;
+        } else if (typeof iconStyle === 'string') {
+          fullRule = iconStyle;
+        }
+        if (fullRule) {
+          const match = fullRule.match(/{([^}]+)}/);
+          if (match) {
+            properties = match[1].trim();
+            rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
+          }
         }
       }
+    }
+
+    if (rule) {
+      if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = new Set();
+      stylesByMedia[mediaQuery].add(rule);
     }
   }
 
   cssOutput += Array.from(keyframesSet).join('\n') + '\n';
-  cssOutput += Array.from(stylesSet).join('\n') + '\n';
+  if (stylesByMedia.default) {
+    cssOutput += Array.from(stylesByMedia.default).join('\n') + '\n';
+  }
+
+  Object.keys(responsiveBreakpoints).forEach(bpKey => {
+    const mq = `@media ${responsiveBreakpoints[bpKey]}`;
+    if (stylesByMedia[mq] && stylesByMedia[mq].size > 0) {
+      cssOutput += `${mq} {\n${Array.from(stylesByMedia[mq]).map(r => `  ${r}`).join('\n')}\n}\n`;
+    }
+  });
 
   if (fs.existsSync(CONFIG_FILE)) {
     try {
@@ -211,7 +180,7 @@ function buildCSS(content) {
   fs.writeFileSync(OUTPUT_CSS, cssOutput);
   console.log(`CSS generated: ${OUTPUT_CSS}`);
 
-  subsetWOFF2(Array.from(usedClasses).map(cls => cls.replace(/^(hover:|focus:|active:|dark:)/, '')));
+  subsetWOFF2(Array.from(usedClasses).map(cls => cls.replace(/^(hover:|focus:|active:|dark:|xs:|sm:|md:|lg:|xl:)/, '')));
 }
 
 async function subsetWOFF2(usedClasses) {
