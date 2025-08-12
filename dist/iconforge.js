@@ -128,7 +128,6 @@
         const style = stylesMeta[cls];
         if (typeof style === 'object' && style.class) {
           if (style.keyframes) {
-            // Avoid duplicate keyframes
             if (!injected.has(style.keyframes)) {
               keyframes += style.keyframes + '\n';
               injected.add(style.keyframes);
