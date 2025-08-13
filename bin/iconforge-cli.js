@@ -21,65 +21,100 @@ function escapeSelector(selector) {
   return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
 }
 
+const responsiveBreakpoints = {
+  'xs:': '(min-width: 420px)',
+  'sm:': '(min-width: 640px)',
+  'md:': '(min-width: 768px)',
+  'lg:': '(min-width: 1024px)',
+  'xl:': '(min-width: 1280px)',
+};
+const pseudoMap = {
+  'hover:': ':hover',
+  'focus:': ':focus',
+  'active:': ':active',
+  'disabled:': ':disabled',
+};
+const darkToken = 'dark:';
+
+const allVariantTokens = [
+  ...Object.keys(responsiveBreakpoints),
+  ...Object.keys(pseudoMap),
+  darkToken,
+];
+
+function parseVariants(token) {
+  let rest = token;
+  let mediaQuery = '';
+  const pseudos = [];
+  let darkPrefix = '';
+
+  
+  outer: while (true) {
+    for (const t of allVariantTokens) {
+      if (rest.startsWith(t)) {
+  
+        if (t in responsiveBreakpoints) {
+          mediaQuery = `@media ${responsiveBreakpoints[t]}`;
+        } else if (t === darkToken) {
+          darkPrefix = '.dark ';
+        } else if (t in pseudoMap) {
+          pseudos.push(pseudoMap[t]);
+        }
+        rest = rest.slice(t.length);
+        continue outer;
+      }
+    }
+    break;
+  }
+
+  return {
+    base: rest,
+    mediaQuery,
+    variantSel: pseudos.join(''),
+    darkPrefix,
+  };
+}
+
+function wrapMedia(css, mediaQuery) {
+  return mediaQuery ? `${mediaQuery} { ${css} }` : css;
+}
+
 function buildCSS(content) {
   fs.ensureDirSync(OUTPUT_DIR);
   const iconsMeta = JSON.parse(fs.readFileSync(META_ICONS, 'utf-8'));
   const stylesMeta = JSON.parse(fs.readFileSync(META_STYLES, 'utf-8'));
 
   const usedClasses = new Set();
-  const responsiveBreakpoints = {
-    'xs:': '(min-width: 420px)',
-    'sm:': '(min-width: 640px)',
-    'md:': '(min-width: 768px)',
-    'lg:': '(min-width: 1024px)',
-    'xl:': '(min-width: 1280px)',
-  };
-  const variantPrefixes = ['hover:', 'focus:', 'active:', 'dark:', ...Object.keys(responsiveBreakpoints)];
 
   const regex = /class\s*=\s*["'`](.*?)["'`]/gms;
   let match;
   while ((match = regex.exec(content)) !== null) {
     match[1].split(/\s+/).forEach(cls => {
-      let baseClass = cls;
-      const variant = variantPrefixes.find(v => cls.startsWith(v));
-      if (variant) {
-        baseClass = cls.slice(variant.length);
-      }
-      if (baseClass.startsWith('if-') || baseClass.startsWith('is-')) {
+      if (!cls) return;
+
+      const { base } = parseVariants(cls);
+      if (base && (base.startsWith('if-') || base.startsWith('is-') || base.startsWith('is-['))) {
         usedClasses.add(cls);
       }
     });
   }
 
-  let cssOutput = `@font-face {font-family: 'IconForge'; src: url('iconforge.woff2') format('woff2'); font-style: normal; font-display: block; }\n[class^="if-"], [class*=" if-"] { font-family: 'IconForge' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n`;
+  let cssOutput =
+    `@font-face {font-family: 'IconForge'; src: url('iconforge.woff2') format('woff2'); font-style: normal; font-display: block; }\n` +
+    `[class^="if-"], [class*=" if-"] { font-family: 'IconForge' !important; display: inline-block; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n`;
 
   const keyframesSet = new Set();
   const stylesByMedia = { default: new Set() };
 
   for (let cls of usedClasses) {
-    let baseClass = cls;
-    let variantCSS = '';
-    let prefix = '';
-    let mediaQuery = 'default';
-
-    const variant = variantPrefixes.find(v => cls.startsWith(v));
-    if (variant) {
-      baseClass = cls.slice(variant.length);
-      if (variant === 'hover:') variantCSS = ':hover';
-      else if (variant === 'focus:') variantCSS = ':focus';
-      else if (variant === 'active:') variantCSS = ':active';
-      else if (variant === 'dark:') {
-        prefix = '.dark ';
-      } else if (responsiveBreakpoints[variant]) {
-        mediaQuery = `@media ${responsiveBreakpoints[variant]}`;
-      }
-    }
+    const { base, mediaQuery, variantSel, darkPrefix } = parseVariants(cls);
 
     let rule = null;
 
-    const arbitraryMatch = baseClass.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|opacity|rot))-\[(.+)\]$/);
+    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|opacity|rot|fixed-bg|gradient-linear|gradient-radial))-\[(.+?)\](?:\[(.+?)\])?(?:\[(.+?)\])?$/);
     if (arbitraryMatch) {
-      const [, type, value] = arbitraryMatch;
+      const [, type, valueRaw, from, to] = arbitraryMatch;
+      const value = typeof valueRaw === 'string' ? valueRaw : String(valueRaw);
       let properties = '';
       switch (type) {
         case 'is-color': properties = `color: ${value};`; break;
@@ -103,13 +138,18 @@ function buildCSS(content) {
         case 'is-mx': properties = `margin-left: ${value}; margin-right: ${value};`; break;
         case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
         case 'is-opacity': properties = `opacity: ${value};`; break;
-        case 'is-rot': properties = `rotate: ${value};`; break;
+        case 'is-rot': properties = `transform: rotate(${value});`; break;
+        case 'is-gradient-linear': properties = `background: linear-gradient(${value}, ${from}, ${to});background-clip: text;-webkit-text-fill-color: transparent;`; break;
+        case 'is-gradient-radial': properties = `background: radial-gradient(${value}, ${from}, ${to});background-clip: text;-webkit-text-fill-color: transparent;`; break;
+        case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;
+        }
       }
       if (properties) {
-        rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+        const sel = `${darkPrefix}.${escapeSelector(cls)}${variantSel}`;
+        rule = `${sel} { ${properties} }`;
       }
     } else {
-      const style = stylesMeta[baseClass];
+      const style = stylesMeta[base];
       if (style) {
         let properties = '';
         let ruleSrc = '';
@@ -119,14 +159,14 @@ function buildCSS(content) {
         } else {
           ruleSrc = style || '';
         }
-        const match = typeof ruleSrc === 'string' ? ruleSrc.match(/{([^}]+)}/) : null;
-        properties = match ? match[1].trim() : ruleSrc;
+        const m = typeof ruleSrc === 'string' ? ruleSrc.match(/{([^}]+)}/) : null;
+        properties = m ? m[1].trim() : ruleSrc;
         if (properties) {
-          rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+          const sel = `${darkPrefix}.${escapeSelector(cls)}${variantSel}`;
+          rule = `${sel} { ${properties} }`;
         }
-      } else if (iconsMeta[baseClass]) {
-        const iconStyle = iconsMeta[baseClass];
-        let properties = '';
+      } else if (iconsMeta[base]) {
+        const iconStyle = iconsMeta[base];
         let fullRule = '';
         if (typeof iconStyle === 'object' && iconStyle.value) {
           fullRule = iconStyle.value;
@@ -134,22 +174,25 @@ function buildCSS(content) {
           fullRule = iconStyle;
         }
         if (fullRule) {
-          const match = fullRule.match(/{([^}]+)}/);
-          if (match) {
-            properties = match[1].trim();
-            rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
+          const m = fullRule.match(/{([^}]+)}/);
+          if (m) {
+            const properties = m[1].trim();
+            const sel = `${darkPrefix}.${escapeSelector(cls)}${variantSel}:before`;
+            rule = `${sel} { ${properties} }`;
           }
         }
       }
     }
 
     if (rule) {
-      if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = new Set();
-      stylesByMedia[mediaQuery].add(rule);
+      const bucket = mediaQuery || 'default';
+      if (!stylesByMedia[bucket]) stylesByMedia[bucket] = new Set();
+      stylesByMedia[bucket].add(rule);
     }
   }
 
   cssOutput += Array.from(keyframesSet).join('\n') + '\n';
+
   if (stylesByMedia.default) {
     cssOutput += Array.from(stylesByMedia.default).join('\n') + '\n';
   }
@@ -182,7 +225,22 @@ function buildCSS(content) {
   fs.writeFileSync(OUTPUT_CSS, cssOutput);
   console.log(`CSS generated: ${OUTPUT_CSS}`);
 
-  subsetWOFF2(Array.from(usedClasses).map(cls => cls.replace(/^(hover:|focus:|active:|dark:|xs:|sm:|md:|lg:|xl:)/, '')));
+  subsetWOFF2(Array.from(usedClasses).map(stripAllPrefixes));
+}
+
+function stripAllPrefixes(token) {
+  let rest = token;
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const t of allVariantTokens) {
+      if (rest.startsWith(t)) {
+        rest = rest.slice(t.length);
+        changed = true;
+      }
+    }
+  }
+  return rest;
 }
 
 async function subsetWOFF2(usedClasses) {
@@ -198,9 +256,8 @@ async function subsetWOFF2(usedClasses) {
         } else if (typeof iconStyle === 'string') {
           content = iconStyle;
         }
-
         if (content) {
-          const match = content.match(/content: '\\([0-9a-fA-F]+)'/);
+          const match = content.match(/content:\s*'\\([0-9a-fA-F]+)'/);
           if (match && match[1]) {
             return String.fromCodePoint(parseInt(match[1], 16));
           }
@@ -219,7 +276,7 @@ async function subsetWOFF2(usedClasses) {
     const fontBuffer = await fs.readFile(path.join(DIST_DIR, 'iconforge.woff2'));
     const subsetBuffer = await subsetFont(fontBuffer, unicodes, {
       targetFormat: 'woff2',
-      getFontName: (name) => `${name}-subset`
+      getFontName: (name) => `${name}-subset`,
     });
     await fs.writeFile(OUTPUT_WOFF2, subsetBuffer);
 
@@ -240,7 +297,7 @@ function runInit() {
   }
   const configContent = `module.exports = {
     content: [
-        './**/*.{html,js,ts,vue,jsx,tsx}',
+      './**/*.{html,js,ts,vue,jsx,tsx}',
     ],
     customCSS: [],
 };
