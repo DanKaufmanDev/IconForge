@@ -1,13 +1,12 @@
-( () => {
+(() => {
   const VERSION = '1.1.6';
-  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@3583c3f/dist';
+  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
   const META_STYLES_URL = `${CDN}/meta/iconforge-styles.json`;
 
   const responsiveBreakpoints = {
-    'xs:': '(min-width: 420px)',
     'sm:': '(min-width: 640px)',
     'md:': '(min-width: 768px)',
     'lg:': '(min-width: 1024px)',
@@ -22,13 +21,6 @@
 
   let iconsMeta = {};
   let stylesMeta = {};
-
-  const metrics = {
-    loadStart: performance.now(),
-    fontLoaded: false,
-    metaLoaded: false,
-    errors: 0
-  };
 
   function escapeSelector(selector) {
     if (typeof selector !== 'string') return '';
@@ -67,14 +59,10 @@
         return;
       }
 
-      const start = performance.now();
       const [icons, styles] = await Promise.all([
-        fetchWithRetry(META_ICONS_URL, { priority: 'high' }),
-        fetchWithRetry(META_STYLES_URL, { priority: 'high' })
+        fetch(META_ICONS_URL).then(res => res.json()),
+        fetch(META_STYLES_URL).then(res => res.json())
       ]);
-      
-      metrics.metaLoaded = true;
-      metrics.metaLoadTime = performance.now() - start;
       
       safeSave('iconforge_icons', icons);
       safeSave('iconforge_styles', styles);
@@ -82,8 +70,7 @@
       iconsMeta = icons;
       stylesMeta = styles;
     } catch (err) {
-      metrics.errors++;
-      console.warn('IconForge: Failed to load meta data, falling back to defaults', err);
+      console.warn('IconForge: Failed to load meta data.', err);
       iconsMeta = {};
       stylesMeta = {};
     }
@@ -149,8 +136,6 @@
         }
       }
 
-      let rule = null;
-      
       const arbitraryMatch = baseClass.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx))-\[(.+)\]$/);
       if (arbitraryMatch) {
         const [, type, value] = arbitraryMatch;
@@ -178,16 +163,16 @@
             case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
         }
         if (properties) {
-          rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+          const rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+          if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = [];
+          stylesByMedia[mediaQuery].push(rule);
         }
       } else if (stylesMeta[baseClass]) {
         const styleData = stylesMeta[baseClass];
         let properties = '';
         let ruleSrc = '';
         if (typeof styleData === 'object' && styleData.class) {
-          if (styleData.keyframes) {
-            keyframes.add(styleData.keyframes);
-          }
+          if (styleData.keyframes) keyframes.add(styleData.keyframes);
           ruleSrc = styleData.class;
         } else if (typeof styleData === 'string') {
           ruleSrc = styleData;
@@ -203,7 +188,9 @@
         }
 
         if (properties) {
-          rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+          const rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
+          if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = [];
+          stylesByMedia[mediaQuery].push(rule);
         }
       } else if (iconsMeta[baseClass]) {
         const iconData = iconsMeta[baseClass];
@@ -211,14 +198,11 @@
             const match = iconData.match(/{([^}]+)}/);
             if (match && match[1]) {
                 const properties = match[1].trim();
-                rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
+                const rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
+                if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = [];
+                stylesByMedia[mediaQuery].push(rule);
             }
         }
-      }
-
-      if (rule) {
-        if (!stylesByMedia[mediaQuery]) stylesByMedia[mediaQuery] = [];
-        stylesByMedia[mediaQuery].push(rule);
       }
     }
 
@@ -233,19 +217,17 @@
         }
     });
 
-    if (newCSSText) {
-      requestAnimationFrame(() => {
-        let dynamicStyle = document.querySelector('.iconforge-dynamic');
-        if (!dynamicStyle) {
-          dynamicStyle = document.createElement('style');
-          dynamicStyle.classList.add('iconforge-dynamic');
-          style.after(dynamicStyle);
-        }
-        if (dynamicStyle.textContent !== newCSSText) {
-            dynamicStyle.textContent = newCSSText;
-        }
-      });
-    }
+    requestAnimationFrame(() => {
+      let dynamicStyle = document.querySelector('.iconforge-dynamic');
+      if (!dynamicStyle) {
+        dynamicStyle = document.createElement('style');
+        dynamicStyle.classList.add('iconforge-dynamic');
+        style.after(dynamicStyle);
+      }
+      if (dynamicStyle.textContent !== newCSSText) {
+          dynamicStyle.textContent = newCSSText;
+      }
+    });
   };
 
   const run = async () => {
@@ -253,19 +235,22 @@
     scanNode(document.documentElement);
     injectStyles();
 
-    let timeout;
     const observer = new MutationObserver((mutations) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            mutations.forEach(mutation => {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach(scanNode);
-                } else if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                    scanNode(mutation.target);
-                }
-            });
+        let needsScan = false;
+        for (const mutation of mutations) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                needsScan = true;
+                break;
+            }
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                needsScan = true;
+                break;
+            }
+        }
+        if (needsScan) {
+            scanNode(document.documentElement);
             injectStyles();
-        }, 16);
+        }
     });
 
     observer.observe(document.documentElement, {
@@ -276,31 +261,10 @@
     });
   };
 
-  const fetchWithRetry = async (url, options, retries = 3) => {
-    for (let i = 0; i < retries; i++) {
-      try {
-        const res = await fetch(url, options);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      } catch (err) {
-        if (i === retries - 1) throw err;
-        await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
-      }
-    }
-  };
-
-  const addResourceHints = () => {
-    const hint = document.createElement('link');
-    hint.rel = 'preconnect';
-    hint.href = new URL(CDN).origin;
-    hint.crossOrigin = 'anonymous';
-    document.head.appendChild(hint);
-  };
-
   const safeSave = (key, data) => {
     try {
       const serialized = JSON.stringify(data);
-      if (serialized.length > 2097152) return false;
+      if (serialized.length > 2097152) return false; // 2MB limit
       sessionStorage.setItem(key, serialized);
       return true;
     } catch (e) {
@@ -311,7 +275,6 @@
   preloadFont();
   injectFontFace();
   injectClass();
-  addResourceHints();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
