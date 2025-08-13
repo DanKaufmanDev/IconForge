@@ -1,6 +1,6 @@
 ( () => {
   const FONT_NAME = 'IconForge';
-  const CDN_BASE = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@cdn-2/dist/iconforge.js';
+  const CDN_BASE = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@3a8b4ef/dist';
   const FONT_URL = `${CDN_BASE}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN_BASE}/meta/iconforge-icons.json`;
   const META_STYLES_URL = `${CDN_BASE}/meta/iconforge-styles.json`;
