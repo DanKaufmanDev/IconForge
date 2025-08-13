@@ -1,6 +1,6 @@
 (() => {
-  const VERSION = '1.1.6';
-  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@f8b7790/dist';
+  const VERSION = '1.2.0';
+  const CDN = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
@@ -26,7 +26,7 @@
     'dark:': 'dark'
   };
 
-  const arbitraryMatch = /^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|mx|my))-\[(.+)\]$/;
+  const arbitraryMatch = /^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|mx|my|opacity|rot))-\[(.+)\]$/;
 
   const escapeSelector = (selector) => {
     return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
@@ -102,7 +102,7 @@
         iconsMeta = JSON.parse(cachedIcons);
         stylesMeta = JSON.parse(cachedStyles);
         return;
-      } catch { }
+      } catch { /* Fetching */ }
     }
     const [icons, styles] = await Promise.all([
       fetchWithRetry(META_ICONS_URL),
@@ -166,6 +166,8 @@
       case 'is-ml': props = `margin-left: ${value};`; break;
       case 'is-mx': props = `margin-left: ${value}; margin-right: ${value};`; break;
       case 'is-my': props = `margin-top: ${value}; margin-bottom: ${value};`; break;
+      case 'is-opacity': props = `opacity: ${value};`; break;
+      case 'is-rot': props = `rotate: ${value};`; break;
     }
     if (!props) return '';
     const sel = `.${escapeSelector(fullCls)}${variantSel}`;
@@ -177,7 +179,6 @@
     const m = ruleStr.match(/{([^}]+)}/);
     return m ? m[1].trim() : '';
   };
-
 
   const buildRuleForClass = (cls) => {
     const { base, mediaQuery, variantSel, darkPrefix } = normalizeClass(cls);
@@ -306,6 +307,8 @@
       attributeFilter: ['class']
     });
   };
+
+  preloadFont()
 
   (() => {
     const pre = document.createElement('link');
