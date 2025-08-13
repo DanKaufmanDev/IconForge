@@ -111,9 +111,9 @@ function buildCSS(content) {
 
     let rule = null;
 
-    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|opacity|rot|fixed-bg|gradient-linear|gradient-radial))-\[(.+?)\](?:\[(.+?)\])?(?:\[(.+?)\])?$/);
+    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|opacity|rot|fixed-bg|gradient-linear|gradient-radial|gradient-conic))-\[(.+?)\](?:\[(.+?)\])?(?:\[(.+?)\])?(?:\[(.+?)\])?$/);
     if (arbitraryMatch) {
-      const [, type, valueRaw, from, to] = arbitraryMatch;
+      const [, type, valueRaw, from, via, to] = arbitraryMatch;
       const value = typeof valueRaw === 'string' ? valueRaw : String(valueRaw);
       let properties = '';
       switch (type) {
@@ -139,8 +139,9 @@ function buildCSS(content) {
         case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
         case 'is-opacity': properties = `opacity: ${value};`; break;
         case 'is-rot': properties = `transform: rotate(${value});`; break;
-        case 'is-gradient-linear': properties = `background: linear-gradient(${value}, ${from}, ${to});background-clip: text;-webkit-text-fill-color: transparent;`; break;
-        case 'is-gradient-radial': properties = `background: radial-gradient(${value}, ${from}, ${to});background-clip: text;-webkit-text-fill-color: transparent;`; break;
+        case 'is-gradient-linear': {const parts = []; if (value) parts.push(value); if (from) parts.push(from); if (via) parts.push(via); if (to) parts.push(to);  properties = ` background: linear-gradient(${parts.join(', ')});  background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-gradient-radial': {const parts = []; if (value) parts.push(value); if (from) parts.push(from); if (via) parts.push(via); if (to) parts.push(to);  properties = ` background: radial-gradient(${parts.join(', ')});  background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-gradient-conic': {const parts = []; if (value) parts.push(value); if (from) parts.push(from); if (via) parts.push(via); if (to) parts.push(to);  properties = ` background: conic-gradient(${parts.join(', ')});  background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
         case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;
         }
       }
