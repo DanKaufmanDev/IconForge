@@ -12,8 +12,8 @@
     "min": "terser dist/iconforge.js -o dist/iconforge.min.js --compress --mangle",
     "prepare": "npm run min",
     "if:init": "node bin/iconforge-cli.js init",
-    "if:build": "node bin/iconforge-cli.js build '**/*.{html,js,ts,vue,jsx,tsx}'",
-    "if:watch": "node ./bin/iconforge-cli.js watch '**/*.{html,js,ts,vue,jsx,tsx}'"
+    "if:build": "node bin/iconforge-cli.js build",
+    "if:watch": "node ./bin/iconforge-cli.js watch"
   },
   "repository": {
     "type": "git",
