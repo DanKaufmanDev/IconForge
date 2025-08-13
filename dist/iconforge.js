@@ -310,7 +310,6 @@
 
   preloadFont()
 
-  (() => {
     const pre = document.createElement('link');
     pre.rel = 'preconnect';
     pre.href = new URL(CDN).origin;
@@ -324,7 +323,6 @@
     preload.crossOrigin = 'anonymous';
     preload.href = FONT_URL;
     document.head.appendChild(preload);
-  })();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
