@@ -434,6 +434,10 @@
 
 "is-sq": ".is-sq { height: auto; width: auto; }",
 
+"is-fixed-bg": ".is-fixed-bg { position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; }",
+
+
+
 "is-rot-45": ".is-rot-45 { rotate: 45deg; }",
 "is-rot-90": ".is-rot-90 { rotate: 90deg; }",
 "is-rot-135": ".is-rot-135 { rotate: 135deg; }",
@@ -680,5 +684,6 @@
 "is-anim-wiggle":{"keyframes": "@keyframes is-wiggle { 0%, 50%, 100% { transform: rotate(0deg); } 25% { transform: rotate(10deg); } 75% { transform: rotate(-10deg); } }","class": ".is-anim-wiggle { animation: is-wiggle 1s ease-in-out infinite; }"},
 "is-anim-flip":{"keyframes": "@keyframes is-flip { 0% { transform: perspective(400px) rotateY(0deg); } 100% { transform: perspective(400px) rotateY(360deg); } }","class": ".is-anim-flip { animation: is-flip 1s linear infinite; }"},
 "is-anim-pop":{"keyframes": "@keyframes is-pop { 0% { transform: scale(0.9); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }","class": ".is-anim-pop { animation: is-pop 0.45s ease-out; }"},
-"is-anim-flicker":{"keyframes": "@keyframes is-flicker { 0%, 19.999%, 22%, 62.999%, 64%, 100% { opacity: 1; } 20%, 21.999%, 63%, 63.999% { opacity: 0.3; } }","class": ".is-anim-flicker { animation: is-flicker 2s infinite; }"}
+"is-anim-flicker":{"keyframes": "@keyframes is-flicker { 0%, 19.999%, 22%, 62.999%, 64%, 100% { opacity: 1; } 20%, 21.999%, 63%, 63.999% { opacity: 0.3; } }","class": ".is-anim-flicker { animation: is-flicker 2s infinite; }"},
+"is-anim-drift": {"keyframes": "@keyframes is-drift {0% { transform: translateY(25px); opacity: 0.05; }25% { opacity: 0.1; rotate: -5deg;}80% { opacity: 0.1; rotate: 5deg;}100% { transform: translateY(-20px); opacity: 0; } }","class": ".is-anim-drift {position: absolute; opacity: 0; animation: is-drift 10s ease-in-out infinite; animation-delay: calc(var(--i) * 0.1s); }"}
 }   
