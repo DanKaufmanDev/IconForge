@@ -1,11 +1,12 @@
 ( () => {
   const FONT_NAME = 'IconForge';
-  const CDN_BASE = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
+  const CDN_BASE = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@e0a5561/dist';
   const FONT_URL = `${CDN_BASE}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN_BASE}/meta/iconforge-icons.json`;
   const META_STYLES_URL = `${CDN_BASE}/meta/iconforge-styles.json`;
 
   const responsiveBreakpoints = {
+    'xs:': '(min-width: 420px)',
     'sm:': '(min-width: 640px)',
     'md:': '(min-width: 768px)',
     'lg:': '(min-width: 1024px)',
