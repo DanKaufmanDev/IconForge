@@ -1,6 +1,6 @@
 (() => {
   const VERSION = '1.1.6';
-  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@c2339cd/dist';
+  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@75dd8b5/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
@@ -61,7 +61,7 @@
 
   // Escape special CSS selector chars: [ ] \ / etc.
   function escapeClassName(cls) {
-    return cls.replace(/([[\]\\/.])/g, '\\$1');
+    return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
   }
 
   // Parse variant classes, extended to flag arbitrary classes
