@@ -496,6 +496,13 @@
 "is-content-around": ".is-content-around { align-content: space-around; }",
 "is-content-evenly": ".is-content-evenly { align-content: space-evenly; }",
 
+"is-text-start": ".is-text-start { text-align: start;}",
+"is-text-end": ".is-text-end { text-align: end; }",
+"is-text-left": ".is-text-left { text-align: left; }",
+"is-text-right": ".is-text-right { text-align: right; }",
+"is-text-center": ".is-text-center { text-align: center; }",
+"is-text-none": ".is-text-none { text-decoration: none; }",
+
 "is-m-auto": ".is-m-auto { margin: auto; }",
 "is-m-1": ".is-m-1 { margin: 0.25rem; }",
 "is-m-2": ".is-m-2 { margin: 0.5rem; }",
