@@ -1,6 +1,6 @@
-(() => {
+( () => {
   const VERSION = '1.1.6';
-  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@90a06d8/dist';
+  const CDN = 'https://cdn.jsdelivr.net/gh/DanKaufmanDev/IconForge@/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;
   const META_ICONS_URL = `${CDN}/meta/iconforge-icons.json`;
@@ -142,7 +142,8 @@
         if (variant === 'hover:') variantCSS = ':hover';
         else if (variant === 'focus:') variantCSS = ':focus';
         else if (variant === 'active:') variantCSS = ':active';
-        else if (variant === 'dark:') { prefix = '.dark ';
+        else if (variant === 'dark:') {
+          prefix = '.dark ';
         } else if (responsiveBreakpoints[variant]) {
           mediaQuery = `@media ${responsiveBreakpoints[variant]}`;
         }
@@ -182,16 +183,25 @@
       } else if (stylesMeta[baseClass]) {
         const styleData = stylesMeta[baseClass];
         let properties = '';
+        let ruleSrc = '';
         if (typeof styleData === 'object' && styleData.class) {
           if (styleData.keyframes) {
             keyframes.add(styleData.keyframes);
           }
-          const match = styleData.class.match(/{([^}]+)}/);
-          properties = match ? match[1].trim() : styleData.class;
+          ruleSrc = styleData.class;
         } else if (typeof styleData === 'string') {
-          const match = styleData.match(/{([^}]+)}/);
-          properties = match ? match[1].trim() : styleData;
+          ruleSrc = styleData;
         }
+        
+        if (ruleSrc) {
+            const match = ruleSrc.match(/{([^}]+)}/);
+            if (match && match[1]) {
+                properties = match[1].trim();
+            } else if (!ruleSrc.includes('{')) {
+                properties = ruleSrc;
+            }
+        }
+
         if (properties) {
           rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
         }
@@ -199,9 +209,9 @@
         const iconData = iconsMeta[baseClass];
         if (typeof iconData === 'string') {
             const match = iconData.match(/{([^}]+)}/);
-            const properties = match ? match[1].trim() : iconData;
-            if (properties) {
-              rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
+            if (match && match[1]) {
+                const properties = match[1].trim();
+                rule = `${prefix}.${escapeSelector(cls)}:before${variantCSS} { ${properties} }`;
             }
         }
       }
