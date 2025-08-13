@@ -69,7 +69,7 @@ Copy the following `<link>` tag into the `<head>` of your HTML file. The path sh
 
 ## Usage
 
-Using an icon is as simple as adding an `<i>` tag with the appropriate class name.
+Using an icon is as simple as adding an `<i>` or `<span>` tag with the appropriate class name.
 
 ```html
 <!-- Basic Icon -->
