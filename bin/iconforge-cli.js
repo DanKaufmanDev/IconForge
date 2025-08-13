@@ -77,7 +77,7 @@ function buildCSS(content) {
 
     let rule = null;
 
-    const arbitraryMatch = baseClass.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx))-\[(.+)\]$/);
+    const arbitraryMatch = baseClass.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|opacity|rot))-\[(.+)\]$/);
     if (arbitraryMatch) {
       const [, type, value] = arbitraryMatch;
       let properties = '';
@@ -102,6 +102,8 @@ function buildCSS(content) {
         case 'is-ml': properties = `margin-left: ${value};`; break;
         case 'is-mx': properties = `margin-left: ${value}; margin-right: ${value};`; break;
         case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
+        case 'is-opacity': properties = `opacity: ${value};`; break;
+        case 'is-rot': properties = `rotate: ${value};`; break;
       }
       if (properties) {
         rule = `${prefix}.${escapeSelector(cls)}${variantCSS} { ${properties} }`;
