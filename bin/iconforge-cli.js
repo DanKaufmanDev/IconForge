@@ -111,9 +111,9 @@ function buildCSS(content) {
 
     let rule = null;
 
-    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|opacity|rot|fixed-bg|gradient-linear|gradient-radial|gradient-conic))-\[(.+?)\](?:\[(.+?)\])?(?:\[(.+?)\])?(?:\[(.+?)\])?$/);
+    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|z|scale|opacity|rot|grid-cols|grid-rows|gap|top|bottom|left|right|translate|translate-x|translate-y|border-t|border-b|border-l|border-r|fixed-bg|gradient-linear|gradient-radial|gradient-conic))-\[(.+)\]$/);
     if (arbitraryMatch) {
-      const [, type, valueRaw, from, via, to] = arbitraryMatch;
+      const [, type, valueRaw] = arbitraryMatch;
       const value = typeof valueRaw === 'string' ? valueRaw : String(valueRaw);
       let properties = '';
       switch (type) {
@@ -137,11 +137,27 @@ function buildCSS(content) {
         case 'is-ml': properties = `margin-left: ${value};`; break;
         case 'is-mx': properties = `margin-left: ${value}; margin-right: ${value};`; break;
         case 'is-my': properties = `margin-top: ${value}; margin-bottom: ${value};`; break;
+        case 'is-z': properties = `z-index: ${value};`; break;
+        case 'is-scale':properties = `transform: scale(${value});`; break;
         case 'is-opacity': properties = `opacity: ${value};`; break;
         case 'is-rot': properties = `transform: rotate(${value});`; break;
-        case 'is-gradient-linear': {const parts = []; if (value) parts.push(value); if (from) parts.push(from); if (via) parts.push(via); if (to) parts.push(to);  properties = ` background: linear-gradient(${parts.join(', ')});  background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
-        case 'is-gradient-radial': {const parts = []; if (value) parts.push(value); if (from) parts.push(from); if (via) parts.push(via); if (to) parts.push(to);  properties = ` background: radial-gradient(${parts.join(', ')});  background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
-        case 'is-gradient-conic': {const parts = []; if (value) parts.push(value); if (from) parts.push(from); if (via) parts.push(via); if (to) parts.push(to);  properties = ` background: conic-gradient(${parts.join(', ')});  background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-grid-cols':properties = `grid-template-columns: repeat(${value}, minmax(0, 1fr));`;break;
+        case 'is-grid-rows':properties = `grid-template-rows: repeat(${value}, minmax(0, 1fr));`;break;
+        case 'is-gap':properties = `gap: ${value};`;break;
+        case 'is-top':properties = `top: ${value};`;break;
+        case 'is-bottom':properties = `bottom: ${value};`;break;
+        case 'is-left':properties = `left: ${value};`;break;
+        case 'is-right':properties = `right: ${value};`;break;
+        case 'is-translate':properties `transform: translate(${value}, ${value});`;break;
+        case 'is-translate-x':properties `transform: translateX(${value});`;break;
+        case 'is-translate-y':properties `transform: translateY(${value});`;break;
+        case 'is-border-t':properties `border-top-width: ${value}; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
+        case 'is-border-b':properties `border-top-width: 0px; border-bottom-width: ${value}; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
+        case 'is-border-l':properties `border-top-width: 0px; border-bottom-width: 0px; border-left-width: ${value}; border-right-width: 0px; border-style: solid;`;break;
+        case 'is-border-r':properties `border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: ${value}; border-style: solid;`;break;
+        case 'is-gradient-linear': properties = `background: linear-gradient(${value}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;
+        case 'is-gradient-radial': properties = `background: radial-gradient(${value}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;
+        case 'is-gradient-conic': properties = `background: conic-gradient(${value}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;
         case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;
         }
       }
