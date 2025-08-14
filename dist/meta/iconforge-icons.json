@@ -579,7 +579,7 @@
   "if-csharp": ".if-csharp:before { font-family: 'IconForge' !important; content: '\\ea96'; }",
   "if-cpp": ".if-cpp:before { font-family: 'IconForge' !important; content: '\\ea97'; }",
   "if-c": ".if-c:before { font-family: 'IconForge' !important; content: '\\ea98'; }",
-  "if-tailwind": ".if-tailwind:before { font-family: 'IconForge' !important; content: '\\ea99'; }",
+  "if-tailwindcss": ".if-tailwindcss:before { font-family: 'IconForge' !important; content: '\\ea99'; }",
   "if-javascript": ".if-javascript:before { font-family: 'IconForge' !important; content: '\\ea9a'; }",
   "if-css": ".if-css:before { font-family: 'IconForge' !important; content: '\\ea9b'; }",
   "if-html": ".if-html:before { font-family: 'IconForge' !important; content: '\\ea9c'; }",

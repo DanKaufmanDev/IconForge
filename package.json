@@ -1,6 +1,6 @@
 {
   "name": "iconforged",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "Frontend icon library. Bridging the gap between traditional icons and modern workflows.",
   "main": "dist/iconforge.js",
   "bin": {
@@ -11,9 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "min": "terser dist/iconforge.js -o dist/iconforge.min.js --compress --mangle",
     "prepare": "npm run min",
-    "if-init": "node bin/iconforge-cli.js init",
-    "if-build": "node bin/iconforge-cli.js build '**/*.{html,js,ts,vue,jsx,tsx}'",
-    "if-watch": "node ./bin/iconforge-cli.js watch '**/*.{html,js,ts,vue,jsx,tsx}'"
+    "if:init": "node bin/iconforge-cli.js init",
+    "if:build": "node bin/iconforge-cli.js build",
+    "if:watch": "node ./bin/iconforge-cli.js watch"
   },
   "repository": {
     "type": "git",
