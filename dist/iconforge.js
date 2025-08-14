@@ -18,32 +18,111 @@
     'lg:': '@media (min-width: 1024px)',
     'xl:': '@media (min-width: 1280px)'
   };
-
-  const variants = {
+  const pseudoMap = {
     'hover:': ':hover',
     'focus:': ':focus',
-    'active:': ':active',
-    'dark:': 'dark'
+    'active:': ':active'
+  };
+  const darkToken = 'dark:';
+  const allVariantTokens = [...Object.keys(breakpoints), ...Object.keys(pseudoMap), darkToken];
+
+  const arbitraryRE = /^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|z|scale|opacity|rot|grid-cols|grid-rows|gap|top|bottom|left|right|translate|translate-x|translate-y|border-t|border-b|border-l|border-r|fixed-bg|gradient-linear|gradient-radial|gradient-conic))\-\[(.+)\]$/;
+
+  const escapeSelector = (s) => {
+    return String(s).replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
+  };
+  const wrapMedia = (css, mediaQuery) => (mediaQuery ? `${mediaQuery}{${css}}` : css);
+  const extractProps = (ruleStr) => {
+    if (typeof ruleStr !== 'string') return '';
+    const m = ruleStr.match(/{([^}]+)}/);
+    return m ? m[1].trim() : '';
   };
 
-  const arbitraryMatch = /^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|mx|my|opacity|rot))-\[(.+)\]$/;
+  function parseVariants(token) {
+    let rest = String(token);
+    let mediaQuery = '';
+    const pseudos = [];
+    let darkPrefix = '';
 
-  const escapeSelector = (selector) => {
-    return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
+    outer: while (true) {
+      for (const t of allVariantTokens) {
+        if (rest.startsWith(t)) {
+          if (t in breakpoints) {
+            mediaQuery = breakpoints[t];
+          } else if (t === darkToken) {
+            darkPrefix = '.dark ';
+          } else if (t in pseudoMap) {
+            pseudos.push(pseudoMap[t]);
+          }
+          rest = rest.slice(t.length);
+          continue outer;
+        }
+      }
+      break;
+    }
+
+    return { base: rest, mediaQuery, variantSel: pseudos.join(''), darkPrefix };
   }
 
-  const preloadFont = () => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = FONT_URL;
-    link.as = 'font';
-    link.type = 'font/woff2';
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
-  };
+  function ruleForArbitrary(fullCls, type, valueRaw, variantSel, darkPrefix, isIconTarget) {
+    const value = String(valueRaw);
+    let props = '';
 
+    switch (type) {
+      case 'is-color':props = `color: ${value};`;break;
+      case 'is-bg':props = `background-color: ${value};`;break;
+      case 'is-w':props = `width: ${value};`;break;
+      case 'is-h':props = `height: ${value};`;break;
+      case 'is-sq':props = `width: ${value}; height: ${value};`;break;
+      case 'is-size':props = `font-size: ${value};`;break;
+      case 'is-p':props = `padding: ${value};`;break;
+      case 'is-pt':props = `padding-top: ${value};`;break;
+      case 'is-pr':props = `padding-right: ${value};`;break;
+      case 'is-pb':props = `padding-bottom: ${value};`;break;
+      case 'is-pl':props = `padding-left: ${value};`;break;
+      case 'is-px':props = `padding-left: ${value}; padding-right: ${value};`;break;
+      case 'is-py':props = `padding-top: ${value}; padding-bottom: ${value};`;break;
+      case 'is-m':props = `margin: ${value};`;break;
+      case 'is-mt':props = `margin-top: ${value};`;break;
+      case 'is-mr':props = `margin-right: ${value};`;break;
+      case 'is-mb':props = `margin-bottom: ${value};`;break;
+      case 'is-ml':props = `margin-left: ${value};`;break;
+      case 'is-mx':props = `margin-left: ${value}; margin-right: ${value};`;break;
+      case 'is-my':props = `margin-top: ${value}; margin-bottom: ${value};`;break;
+      case 'is-z':props = `z-index: ${value};`; break;
+      case 'is-scale':props = `transform: scale(${value});`; break;
+      case 'is-opacity':props = `opacity: ${value};`;break;
+      case 'is-rot':props = `transform: rotate(${value});`;break;
+      case 'is-grid-cols':props = `grid-template-columns: repeat(${value}, minmax(0, 1fr));`;break;
+      case 'is-grid-rows':props = `grid-template-rows: repeat(${value}, minmax(0, 1fr));`;break;
+      case 'is-gap':props = `gap: ${value};`;break;
+      case 'is-top':props = `top: ${value};`;break;
+      case 'is-bottom':props = `bottom: ${value};`;break;
+      case 'is-left':props = `left: ${value};`;break;
+      case 'is-right':props = `right: ${value};`;break;
+      case 'is-translate':props `transform: translate(${value}, ${value});`;break;
+      case 'is-translate-x':props `transform: translateX(${value});`;break;
+      case 'is-translate-y':props `transform: translateY(${value});`;break;
+      case 'is-border-t':props `border-top-width: ${value}; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
+      case 'is-border-b':props `border-top-width: 0px; border-bottom-width: ${value}; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
+      case 'is-border-l':props `border-top-width: 0px; border-bottom-width: 0px; border-left-width: ${value}; border-right-width: 0px; border-style: solid;`;break;
+      case 'is-border-r':props `border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: ${value}; border-style: solid;`;break;
+      case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');props = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;}
+      case 'is-gradient-linear': {const safeVal = value.replace(/"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: linear-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`;}
+      case 'is-gradient-radial': {const safeVal = value.replace(/"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: radial-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`;}
+      case 'is-gradient-conic': {const safeVal = value.replace(/"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: conic-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`;}
+      default:props = '';
+    }
+
+    if (!props) return '';
+    const selector = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel}`;
+    return `${selector} { ${props} }`;
+  }
+
+  // base style + dynamic
   const baseStyle = document.createElement('style');
   baseStyle.textContent = `
+/* IconForge CDN v${VERSION} */
 @font-face {
   font-family: '${FONT_NAME}';
   src: url('${FONT_URL}') format('woff2');
@@ -84,7 +163,6 @@
       }
     }
   };
-
   const safeSave = (key, data) => {
     try {
       const s = JSON.stringify(data);
@@ -102,92 +180,26 @@
         iconsMeta = JSON.parse(cachedIcons);
         stylesMeta = JSON.parse(cachedStyles);
         return;
-      } catch { /* Fetching */ }
+      } catch { /* fall through */ }
     }
     const [icons, styles] = await Promise.all([
       fetchWithRetry(META_ICONS_URL),
       fetchWithRetry(META_STYLES_URL)
     ]);
-    iconsMeta = icons;
-    stylesMeta = styles;
-    safeSave('iconforge_icons', icons);
-    safeSave('iconforge_styles', styles);
+    iconsMeta = icons || {};
+    stylesMeta = styles || {};
+    safeSave('iconforge_icons', iconsMeta);
+    safeSave('iconforge_styles', stylesMeta);
   };
 
-  const normalizeClass = (cls) => {
-    let base = cls;
-    let mediaQuery = '';
-    let variantSel = '';
-    let darkPrefix = '';
+  function buildRuleForToken(token) {
+    const { base, mediaQuery, variantSel, darkPrefix } = parseVariants(token);
 
-    for (const pfx of Object.keys(breakpoints)) {
-      if (base.startsWith(pfx)) {
-        mediaQuery = breakpoints[pfx];
-        base = base.slice(pfx.length);
-        break;
-      }
-    }
-
-    for (const pfx of Object.keys(variants)) {
-      if (base.startsWith(pfx)) {
-        const v = variants[pfx];
-        if (pfx === 'dark:') {
-          darkPrefix = '.dark ';
-        } else {
-          variantSel = v;
-        }
-        base = base.slice(pfx.length);
-        break;
-      }
-    }
-    return { base, mediaQuery, variantSel, darkPrefix };
-  };
-
-  const ruleForArbitrary = (fullCls, type, value, variantSel, darkPrefix) => {
-    let props = '';
-    switch (type) {
-      case 'is-color': props = `color: ${value};`; break;
-      case 'is-bg': props = `background-color: ${value};`; break;
-      case 'is-w': props = `width: ${value};`; break;
-      case 'is-h': props = `height: ${value};`; break;
-      case 'is-sq': props = `width: ${value}; height: ${value};`; break;
-      case 'is-size': props = `font-size: ${value};`; break;
-      case 'is-p': props = `padding: ${value};`; break;
-      case 'is-pt': props = `padding-top: ${value};`; break;
-      case 'is-pr': props = `padding-right: ${value};`; break;
-      case 'is-pb': props = `padding-bottom: ${value};`; break;
-      case 'is-pl': props = `padding-left: ${value};`; break;
-      case 'is-px': props = `padding-left: ${value}; padding-right: ${value};`; break;
-      case 'is-py': props = `padding-top: ${value}; padding-bottom: ${value};`; break;
-      case 'is-m': props = `margin: ${value};`; break;
-      case 'is-mt': props = `margin-top: ${value};`; break;
-      case 'is-mr': props = `margin-right: ${value};`; break;
-      case 'is-mb': props = `margin-bottom: ${value};`; break;
-      case 'is-ml': props = `margin-left: ${value};`; break;
-      case 'is-mx': props = `margin-left: ${value}; margin-right: ${value};`; break;
-      case 'is-my': props = `margin-top: ${value}; margin-bottom: ${value};`; break;
-      case 'is-opacity': props = `opacity: ${value};`; break;
-      case 'is-rot': props = `rotate: ${value};`; break;
-    }
-    if (!props) return '';
-    const sel = `.${escapeSelector(fullCls)}${variantSel}`;
-    return `${darkPrefix}${sel} { ${props} }`;
-  };
-
-  const extractProps = (ruleStr) => {
-    if (typeof ruleStr !== 'string') return '';
-    const m = ruleStr.match(/{([^}]+)}/);
-    return m ? m[1].trim() : '';
-  };
-
-  const buildRuleForClass = (cls) => {
-    const { base, mediaQuery, variantSel, darkPrefix } = normalizeClass(cls);
-
-    const arb = base.match(arbitraryMatch);
+    const arb = base.match(arbitraryRE);
     if (arb) {
-      const [, type, value] = arb;
-      const rule = ruleForArbitrary(cls, type, value, variantSel, darkPrefix);
-      return { keyframes: '', css: wrapMedia(rule, mediaQuery) };
+      const [, type, valueRaw] = arb;
+      const css = ruleForArbitrary(token, type, valueRaw, variantSel, darkPrefix, false);
+      return { keyframes: '', css: wrapMedia(css, mediaQuery) };
     }
 
     const styleDef = stylesMeta[base];
@@ -196,12 +208,12 @@
       let props = '';
       if (typeof styleDef === 'object' && styleDef !== null) {
         if (styleDef.keyframes) keyframes = `${styleDef.keyframes}\n`;
-        if (styleDef.class) props = extractProps(styleDef.class);
+        props = extractProps(styleDef.class) || styleDef.class || '';
       } else if (typeof styleDef === 'string') {
-        props = extractProps(styleDef);
+        props = extractProps(styleDef) || styleDef;
       }
       if (props) {
-        const sel = `.${escapeSelector(cls)}${variantSel}`;
+        const sel = `.${escapeSelector(token)}${variantSel}`;
         const rule = `${darkPrefix}${sel} { ${props} }`;
         return { keyframes, css: wrapMedia(rule, mediaQuery) };
       }
@@ -213,61 +225,59 @@
       let full = '';
       if (typeof iconDef === 'object' && iconDef.value) full = iconDef.value;
       else if (typeof iconDef === 'string') full = iconDef;
-      const props = extractProps(full);
+      const props = extractProps(full) || full;
       if (props) {
-        const sel = `.${escapeSelector(cls)}:before${variantSel}`;
+        const sel = `.${escapeSelector(token)}${variantSel}:before`;
         const rule = `${darkPrefix}${sel} { ${props} }`;
         return { keyframes: '', css: wrapMedia(rule, mediaQuery) };
       }
     }
 
     return { keyframes: '', css: '' };
-  };
+  }
 
-  const wrapMedia = (css, mediaQuery) => mediaQuery ? `${mediaQuery}{${css}}` : css;
+  function tokenLooksRelevant(token) {
+    if (!token) return false;
+    if (token.startsWith('if-') || token.startsWith('is-')) return true;
+    for (const t of allVariantTokens) {
+      if (token.startsWith(t)) return true;
+    }
+    return false;
+  }
 
-  const scanElement = (el) => {
+  function scanElement(el) {
     const classes = el.className;
     if (typeof classes !== 'string') return;
     classes.split(/\s+/).forEach(token => {
-      if (!token) return;
-      const isCandidate =
-        token.startsWith('if-') ||
-        token.startsWith('is-') ||
-        Object.keys(breakpoints).some(p => token.startsWith(p)) ||
-        Object.keys(variants).some(v => token.startsWith(v));
-      if (!isCandidate) return;
-
-      const { base } = normalizeClass(token);
-      if (base.startsWith('if-') || base.startsWith('is-')) {
+      if (!tokenLooksRelevant(token)) return;
+      const { base } = parseVariants(token);
+      if (base && (base.startsWith('if-') || base.startsWith('is-'))) {
         usedClasses.add(token);
       }
     });
-  };
+  }
 
-  const scanNode = (root) => {
+  function scanNode(root) {
     if (!root) return;
     if (root.nodeType === Node.ELEMENT_NODE) scanElement(root);
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
     while (walker.nextNode()) scanElement(walker.currentNode);
-  };
+  }
 
-  const injectStyles = () => {
+  function injectCollected() {
     let keyframesBuf = '';
     let classesBuf = '';
 
-    usedClasses.forEach((cls) => {
-      if (injected.has(cls)) return;
-      const { keyframes, css } = buildRuleForClass(cls);
-      if (keyframes) {
-        if (!injected.has(keyframes)) {
-          keyframesBuf += keyframes;
-          injected.add(keyframes);
-        }
+    usedClasses.forEach(token => {
+      if (injected.has(token)) return;
+      const { keyframes, css } = buildRuleForToken(token);
+      if (keyframes && !injected.has(keyframes)) {
+        keyframesBuf += keyframes;
+        injected.add(keyframes);
       }
       if (css) {
         classesBuf += css + '\n';
-        injected.add(cls);
+        injected.add(token);
       }
     });
 
@@ -277,13 +287,31 @@
         dynamicStyle.textContent += newCSS;
       });
     }
-  };
+  }
 
+  // resource hints + preload
+  (function hints() {
+    try {
+      const pre = document.createElement('link');
+      pre.rel = 'preconnect';
+      pre.href = new URL(CDN).origin;
+      pre.crossOrigin = 'anonymous';
+      document.head.appendChild(pre);
+      const preload = document.createElement('link');
+      preload.rel = 'preload';
+      preload.as = 'font';
+      preload.type = 'font/woff2';
+      preload.crossOrigin = 'anonymous';
+      preload.href = FONT_URL;
+      document.head.appendChild(preload);
+    } catch (e) { /* noop */ }
+  })();
+
+  // run
   const run = async () => {
     await fetchMeta();
-
     scanNode(document.documentElement);
-    injectStyles();
+    injectCollected();
 
     let debounce;
     const observer = new MutationObserver((mutations) => {
@@ -293,10 +321,10 @@
           if (m.type === 'childList') {
             m.addedNodes.forEach(scanNode);
           } else if (m.type === 'attributes' && m.attributeName === 'class') {
-            scanNode(m.target);
+            scanElement(m.target);
           }
         }
-        injectStyles();
+        injectCollected();
       }, 16);
     });
 
@@ -307,22 +335,6 @@
       attributeFilter: ['class']
     });
   };
-
-  preloadFont()
-
-    const pre = document.createElement('link');
-    pre.rel = 'preconnect';
-    pre.href = new URL(CDN).origin;
-    pre.crossOrigin = 'anonymous';
-    document.head.appendChild(pre);
-
-    const preload = document.createElement('link');
-    preload.rel = 'preload';
-    preload.as = 'font';
-    preload.type = 'font/woff2';
-    preload.crossOrigin = 'anonymous';
-    preload.href = FONT_URL;
-    document.head.appendChild(preload);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
