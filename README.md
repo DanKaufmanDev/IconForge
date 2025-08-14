@@ -7,9 +7,10 @@
 [![npm version](https://img.shields.io/npm/v/iconforged.svg)](https://www.npmjs.com/package/iconforged)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Fast, Lightweight, and Customizable Icon Library. Stop Guessing, Start Forging.**
+**Fast, Lightweight, and Customizable Icon Library.**\
+**Stop Guessing, Start Forging.**
 
-IconForge is a performance-focused, utility-style icon framework that lets you load **only the icons you need**.
+IconForge is a performance-focused, utility-style icon library that lets you load **only the icons you need**.
 Powered by a JIT (Just-In-Time) compiler, IconForge tree-shakes unused icons, dynamically injects CSS at runtime,
 and delivers blazing-fast performance — whether you use it via CDN or IconForge CLI.
 
@@ -78,12 +79,12 @@ Using an icon is as simple as adding an `<i>` or `<span>` tag with the appropria
 <!-- Styled Icon -->
 <i class="if-heart is-color-red-5 is-size-2xl is-anim-pulse"></i>
 ```
-Use prefix's like `dark:` `hover:` to dynamically change your icon
+Use prefixes like `dark:` `hover:` to dynamically change your icon
 ```html
 <!-- Dynamic Icon -->
 <i class="if-bulb is-color-white dark:is-color-amber-4 is-size-2xl hover:is-anim-pop"></I>
 ```
-IconForge support arbitrary value handling simply place the value between square brackets `[VALUE]`
+IconForge support arbitrary value's simply place the value between square brackets `[VALUE]`
 ```html
 <!-- Arbitrary Icon-->
 <button class="is-sq hover:is-clickable">
