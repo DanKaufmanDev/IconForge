@@ -119,7 +119,6 @@
     return `${selector} { ${props} }`;
   }
 
-  // base style + dynamic
   const baseStyle = document.createElement('style');
   baseStyle.textContent = `
 /* IconForge CDN v${VERSION} */
@@ -289,7 +288,6 @@
     }
   }
 
-  // resource hints + preload
   (function hints() {
     try {
       const pre = document.createElement('link');
@@ -307,7 +305,6 @@
     } catch (e) { /* noop */ }
   })();
 
-  // run
   const run = async () => {
     await fetchMeta();
     scanNode(document.documentElement);
