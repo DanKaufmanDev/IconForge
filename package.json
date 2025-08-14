@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/DanKaufmanDev/IconForge.git"
   },
-  "keywords": [],
+  "keywords": ["IconForge", "Frontend", "Icon", "library"],
   "author": {
     "name": "DanKaufmanDev",
     "url": "https://danielkaufman.dev"
