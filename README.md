@@ -60,7 +60,7 @@ npx iconforged watch
 ```
 This will generate an `iconforge-output` directory containing your `iconforge.css` and `iconforge.woff2` files.
 
-**4. Link the generated stylesheet in your HTML:**
+**3. Link the generated stylesheet in your HTML:**
 
 Copy the following `<link>` tag into the `<head>` of your HTML file. The path should be relative to your HTML file.
 
