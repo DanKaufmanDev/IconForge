@@ -26,10 +26,10 @@
   const darkToken = 'dark:';
   const allVariantTokens = [...Object.keys(breakpoints), ...Object.keys(pseudoMap), darkToken];
 
-  const arbitraryRE = /^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|z|scale|opacity|rot|grid-cols|grid-rows|gap|top|bottom|left|right|translate|translate-x|translate-y|border-t|border-b|border-l|border-r|fixed-bg|gradient-linear|gradient-radial|gradient-conic))\-\[(.+)\]$/;
+  const arbitraryRE = /^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|z|scale|opacity|rot|grid-cols|grid-rows|gap|top|bottom|left|right|translate|translate-x|translate-y|border|border-t|border-b|border-l|border-r|fixed-bg|gradient-linear|gradient-radial|gradient-conic|outline|outline-dashed|outline-dotted|outline-double|blur|backdrop-blur|brightness|contrast|grayscale|saturate))-\[(.+)\]$/;
 
   const escapeSelector = (s) => {
-    return String(s).replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
+    return String(s).replace(/([ !\"#$%&'()*+,./:;<=>?@[\]^`{|}~])/g, '\\$1');
   };
   const wrapMedia = (css, mediaQuery) => (mediaQuery ? `${mediaQuery}{${css}}` : css);
   const extractProps = (ruleStr) => {
@@ -100,17 +100,28 @@
       case 'is-bottom':props = `bottom: ${value};`;break;
       case 'is-left':props = `left: ${value};`;break;
       case 'is-right':props = `right: ${value};`;break;
-      case 'is-translate':props `transform: translate(${value}, ${value});`;break;
-      case 'is-translate-x':props `transform: translateX(${value});`;break;
-      case 'is-translate-y':props `transform: translateY(${value});`;break;
-      case 'is-border-t':props `border-top-width: ${value}; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
-      case 'is-border-b':props `border-top-width: 0px; border-bottom-width: ${value}; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
-      case 'is-border-l':props `border-top-width: 0px; border-bottom-width: 0px; border-left-width: ${value}; border-right-width: 0px; border-style: solid;`;break;
-      case 'is-border-r':props `border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: ${value}; border-style: solid;`;break;
+      case 'is-translate':props = `transform: translate(${value}, ${value});`;break;
+      case 'is-translate-x':props = `transform: translateX(${value});`;break;
+      case 'is-translate-y':props = `transform: translateY(${value});`;break;
+      case 'is-border': props = `border-width: ${value} ${value} ${value} ${value}; border-style: solid;`;break;
+      case 'is-border-t':props = `border-top-width: ${value}; border-style: solid;`;break;
+      case 'is-border-b':props = `border-bottom-width: ${value}; border-style: solid;`;break;
+      case 'is-border-l':props = `border-left-width: ${value}; border-style: solid;`;break;
+      case 'is-border-r':props = `border-right-width: ${value}; border-style: solid;`;break;
+      case 'is-outline':props = `outline: 1px solid ${value};`;break;
+      case 'is-outline-dashed':props = `outline: 1px dashed ${value};`;break;
+      case 'is-outline-dotted':props = `outline: 1px dotted ${value};`;break;
+      case 'is-outline-double':props = `outline: 2px solid ${value};`;break;
+      case 'is-blur':props = `filter: blur(${value});`;break;
+      case 'is-backdrop-blur':props = `backdrop-filter: blur(${value});`;break;
+      case 'is-brightness': props = `filter: brightness(${value});`;break;
+      case 'is-contrast': props = `filter: contrast(${value});`;break;
+      case 'is-grayscale': props = `filter: grayscale(${value});`;break;
+      case 'is-saturate': props = `filter: saturate(${value});`;break;
       case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');props = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;}
-      case 'is-gradient-linear': {const safeVal = value.replace(/"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: linear-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`;}
-      case 'is-gradient-radial': {const safeVal = value.replace(/"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: radial-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`;}
-      case 'is-gradient-conic': {const safeVal = value.replace(/"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: conic-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`;}
+      case 'is-gradient-linear': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: linear-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`}
+      case 'is-gradient-radial': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: radial-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`}
+      case 'is-gradient-conic': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');const ruleElem = `${darkPrefix}.${escapeSelector(fullCls)}${variantSel} { background-image: conic-gradient(${safeVal}); color: transparent; -webkit-background-clip: text; background-clip: text; }`;return `${ruleElem}`}
       default:props = '';
     }
 
