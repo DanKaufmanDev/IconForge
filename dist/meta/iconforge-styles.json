@@ -954,8 +954,111 @@
 "is-translate-y": ".is-translate-y { transform: translateY(0%); }",
 "is-translate-x": ".is-translate-x { transform: translateX(0%); }",
 
-"is-border-t": ".is-border-t { border-top-width: 2px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; border-style: solid; }",
-"is-border-b": ".is-border-b { border-top-width: 0px; border-bottom-width: 2px; border-left-width: 0px; border-right-width: 0px; border-style: solid; }",
-"is-border-l": ".is-border-l { border-top-width: 0px; border-bottom-width: 0px; border-left-width: 2px; border-right-width: 0px; border-style: solid; }",
-"is-border-r": ".is-border-r { border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 2px; border-style: solid; }"
+"is-border-t": ".is-border-t { border-top-width: 2px; border-style: solid; }",
+"is-border-b": ".is-border-b { border-bottom-width: 2px; border-style: solid; }",
+"is-border-l": ".is-border-l { border-left-width: 2px; border-style: solid; }",
+"is-border-r": ".is-border-r { border-right-width: 2px; border-style: solid; }",
+
+"is-border":".is-border { border-width: 1px 1px 1px 1px; border-style: solid; }",
+
+"is-bg-transparent": ".is-bg-transparent { background-color: transparent; }",
+
+"is-border-none": ".is-border-none { border: transparent; }",
+
+"is-outline-none": ".is-outline-none { outline: 2px solid transparent; }",
+"is-outline": ".is-outline { outline: 1px solid; }",
+"is-outline-dashed": ".is-outline-dashed { outline: 1px dashed; }",
+"is-outline-dotted": ".is-outline-dotted { outline: 1px dotted; }",
+"is-outline-double": ".is-outline-double { outline: 4px double; }",
+
+"is-flex-grow-0": ".is-flex-grow-0 { flex-grow: 0; }",
+"is-flex-grow-1": ".is-flex-grow-1 { flex-grow: 1; }",
+"is-flex-shrink-0": ".is-flex-shrink-0 { flex-shrink: 0; }",
+"is-flex-shrink-1": ".is-flex-shrink-1 { flex-shrink: 1; }",
+
+"is-font-light": ".is-font-light { font-weight: 300; }",
+"is-font-normal": ".is-font-normal { font-weight: 400; }",
+"is-font-medium": ".is-font-medium { font-weight: 500; }",
+"is-font-semibold": ".is-font-semibold { font-weight: 600; }",
+"is-font-bold": ".is-font-bold { font-weight: 700; }",
+
+"is-shadow": ".is-shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }",
+"is-shadow-sm": ".is-shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }",
+"is-shadow-md": ".is-shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }",
+"is-shadow-lg": ".is-shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }",
+"is-shadow-xl": ".is-shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }",
+"is-shadow-2xl": ".is-shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }",
+"is-shadow-inner": ".is-shadow-inner { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); }",
+"is-shadow-none": ".is-shadow-none { box-shadow: none; }",
+
+"is-overflow-auto": ".is-overflow-auto { overflow: auto; }",
+"is-overflow-hidden": ".is-overflow-hidden { overflow: hidden; }",
+"is-overflow-visible": ".is-overflow-visible { overflow: visible; }",
+"is-overflow-scroll": ".is-overflow-scroll { overflow: scroll; }",
+"is-overflow-x-auto": ".is-overflow-x-auto { overflow-x: auto; }",
+"is-overflow-y-auto": ".is-overflow-y-auto { overflow-y: auto; }",
+"is-overflow-x-hidden": ".is-overflow-x-hidden { overflow-x: hidden; }",
+"is-overflow-y-hidden": ".is-overflow-y-hidden { overflow-y: hidden; }",
+"is-overflow-x-visible": ".is-overflow-x-visible { overflow-x: visible; }",
+"is-overflow-y-visible": ".is-overflow-y-visible { overflow-y: visible; }",
+"is-overflow-x-scroll": ".is-overflow-x-scroll { overflow-x: scroll; }",
+"is-overflow-y-scroll": ".is-overflow-y-scroll { overflow-y: scroll; }",
+
+"is-aspect-auto": ".is-aspect-auto { aspect-ratio: auto; }",
+"is-aspect-square": ".is-aspect-square { aspect-ratio: 1 / 1; }",
+"is-aspect-video": ".is-aspect-video { aspect-ratio: 16 / 9; }",
+
+"is-blur-sm": ".is-blur-sm { filter: blur(4px); }",
+"is-blur": ".is-blur { filter: blur(8px); }",
+"is-blur-md": ".is-blur-md { filter: blur(12px); }",
+"is-blur-lg": ".is-blur-lg { filter: blur(16px); }",
+"is-blur-xl": ".is-blur-xl { filter: blur(24px); }",
+"is-blur-2xl": ".is-blur-2xl { filter: blur(40px); }",
+
+"is-brightness-0": ".is-brightness-0 { filter: brightness(0); }",
+"is-brightness-50": ".is-brightness-50 { filter: brightness(.5); }",
+"is-brightness-100": ".is-brightness-100 { filter: brightness(1); }",
+
+"is-contrast-0": ".is-contrast-0 { filter: contrast(0); }",
+"is-contrast-50": ".is-contrast-50 { filter: contrast(.5); }",
+"is-contrast-75": ".is-contrast-75 { filter: contrast(.75); }",
+"is-contrast-100": ".is-contrast-100 { filter: contrast(1); }",
+"is-contrast-125": ".is-contrast-125 { filter: contrast(1.25); }",
+"is-contrast-150": ".is-contrast-150 { filter: contrast(1.5); }",
+"is-contrast-200": ".is-contrast-200 { filter: contrast(2); }",
+
+"is-grayscale-0": ".is-grayscale-0 { filter: grayscale(0); }",
+"is-grayscale": ".is-grayscale { filter: grayscale(100%); }",
+
+"is-invert-0": ".is-invert-0 { filter: invert(0); }",
+"is-invert": ".is-invert { filter: invert(100%); }",
+
+"is-saturate-0": ".is-saturate-0 { filter: saturate(0); }",
+"is-saturate-50": ".is-saturate-50 { filter: saturate(.5); }",
+"is-saturate-100": ".is-saturate-100 { filter: saturate(1); }",
+
+"is-sepia-0": ".is-sepia-0 { filter: sepia(0); }",
+"is-sepia": ".is-sepia { filter: sepia(100%); }",
+
+"is-resize-none": ".is-resize-none { resize: none; }",
+"is-resize-y": ".is-resize-y { resize: vertical; }",
+"is-resize-x": ".is-resize-x { resize: horizontal; }",
+"is-resize": ".is-resize { resize: both; }",
+
+"is-select-none": ".is-select-none { user-select: none; }",
+"is-select-text": ".is-select-text { user-select: text; }",
+"is-select-all": ".is-select-all { user-select: all; }",
+"is-select-auto": ".is-select-auto { user-select: auto; }",
+
+"is-truncate": ".is-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }",
+
+"is-list-disc": ".is-list-disc { list-style-type: disc; }",
+"is-list-decimal": ".is-list-decimal { list-style-type: decimal; }",
+"is-list-inside": ".is-list-inside { list-style-position: inside; }",
+"is-list-outside": ".is-list-outside { list-style-position: outside; }",
+
+"is-backdrop-blur-none": ".is-backdrop-blur-none { backdrop-filter: blur(0); }",
+"is-backdrop-blur-sm": ".is-backdrop-blur-sm { backdrop-filter: blur(4px); }",
+"is-backdrop-blur-md": ".is-backdrop-blur-md { backdrop-filter: blur(8px); }",
+"is-backdrop-blur-lg": ".is-backdrop-blur-lg { backdrop-filter: blur(12px); }"
 }   
