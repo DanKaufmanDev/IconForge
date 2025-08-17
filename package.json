@@ -1,6 +1,6 @@
 {
   "name": "iconforged",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Frontend icon library. Bridging the gap between traditional icons and modern workflows.",
   "main": "dist/iconforge.js",
   "bin": {
