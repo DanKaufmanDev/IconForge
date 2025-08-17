@@ -111,7 +111,7 @@ function buildCSS(content) {
 
     let rule = null;
 
-    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|z|scale|opacity|rot|grid-cols|grid-rows|gap|top|bottom|left|right|translate|translate-x|translate-y|border-t|border-b|border-l|border-r|fixed-bg|gradient-linear|gradient-radial|gradient-conic))-\[(.+)\]$/);
+    const arbitraryMatch = base.match(/^(is-(?:color|bg|w|h|sq|size|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|my|mx|z|scale|opacity|rot|grid-cols|grid-rows|gap|top|bottom|left|right|translate|translate-x|translate-y|border|border-t|border-b|border-l|border-r|fixed-bg|gradient-linear|gradient-radial|gradient-conic|outline|outline-dashed|outline-dotted|outline-double|blur|backdrop-blur|brightness|contrast|grayscale|saturate))-\[(.+)\]$/);
     if (arbitraryMatch) {
       const [, type, valueRaw] = arbitraryMatch;
       const value = typeof valueRaw === 'string' ? valueRaw : String(valueRaw);
@@ -148,18 +148,29 @@ function buildCSS(content) {
         case 'is-bottom':properties = `bottom: ${value};`;break;
         case 'is-left':properties = `left: ${value};`;break;
         case 'is-right':properties = `right: ${value};`;break;
-        case 'is-translate':properties `transform: translate(${value}, ${value});`;break;
-        case 'is-translate-x':properties `transform: translateX(${value});`;break;
-        case 'is-translate-y':properties `transform: translateY(${value});`;break;
-        case 'is-border-t':properties `border-top-width: ${value}; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
-        case 'is-border-b':properties `border-top-width: 0px; border-bottom-width: ${value}; border-left-width: 0px; border-right-width: 0px; border-style: solid;`;break;
-        case 'is-border-l':properties `border-top-width: 0px; border-bottom-width: 0px; border-left-width: ${value}; border-right-width: 0px; border-style: solid;`;break;
-        case 'is-border-r':properties `border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: ${value}; border-style: solid;`;break;
-        case 'is-gradient-linear': properties = `background: linear-gradient(${value}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;
-        case 'is-gradient-radial': properties = `background: radial-gradient(${value}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;
-        case 'is-gradient-conic': properties = `background: conic-gradient(${value}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;
-        case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;
-        }
+        case 'is-translate':properties = `transform: translate(${value}, ${value});`;break;
+        case 'is-translate-x':properties = `transform: translateX(${value});`;break;
+        case 'is-translate-y':properties = `transform: translateY(${value});`;break;
+        case 'is-border': properties = `border-width: ${value} ${value} ${value} ${value}; border-style: solid;`;break;
+        case 'is-border-t':properties = `border-top-width: ${value}; border-style: solid;`;break;
+        case 'is-border-b':properties = `border-bottom-width: ${value}; border-style: solid;`;break;
+        case 'is-border-l':properties = `border-left-width: ${value}; border-style: solid;`;break;
+        case 'is-border-r':properties = `border-right-width: ${value}; border-style: solid;`;break;
+        case 'is-outline':properties = `outline: 1px solid ${value};`;break;
+        case 'is-outline-dashed':properties = `outline: 1px dashed ${value};`;break;
+        case 'is-outline-dotted':properties = `outline: 1px dotted ${value};`;break;
+        case 'is-outline-double':properties = `outline: 2px solid ${value};`;break;
+        case 'is-blur':properties = `filter: blur(${value});`;break;
+        case 'is-backdrop-blur':properties = `backdrop-filter: blur(${value});`;break;
+        case 'is-brightness': properties = `filter: brightness(${value});`;break;
+        case 'is-contrast': properties = `filter: contrast(${value});`;break;
+        case 'is-grayscale': properties = `filter: grayscale(${value});`;break;
+        case 'is-saturate': properties = `filter: saturate(${value});`;break;
+        case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;}
+        case 'is-gradient-linear': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');properties = `background: linear-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-gradient-radial': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');properties = `background: radial-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-gradient-conic': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');properties = `background: conic-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        default:properties = '';
       }
       if (properties) {
         const sel = `${darkPrefix}.${escapeSelector(cls)}${variantSel}`;
