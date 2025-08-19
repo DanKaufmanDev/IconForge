@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = '1.2.0';
+  const VERSION = '1.3.1';
   const CDN = 'https://cdn.jsdelivr.net/npm/iconforged@latest/dist';
   const FONT_NAME = 'IconForge';
   const FONT_URL = `${CDN}/iconforge.woff2`;

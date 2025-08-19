@@ -15,10 +15,38 @@ const OUTPUT_CSS = path.join(OUTPUT_DIR, 'iconforge.css');
 const OUTPUT_WOFF2 = path.join(OUTPUT_DIR, 'iconforge.woff2');
 
 const TEMP_DIR = path.join(os.tmpdir(), 'iconforge-subset');
-const CONFIG_FILE = path.join(process.cwd(), 'iconforge.config.js');
+const CJS_CONFIG_PATH = path.join(process.cwd(), 'iconforge.config.cjs');
+const JS_CONFIG_PATH = path.join(process.cwd(), 'iconforge.config.js');
+
+async function loadConfig() {
+  let configPath = '';
+  if (fs.existsSync(CJS_CONFIG_PATH)) {
+    configPath = CJS_CONFIG_PATH;
+  } else if (fs.existsSync(JS_CONFIG_PATH)) {
+    configPath = JS_CONFIG_PATH;
+    console.warn('Warning: iconforge.config.js is deprecated. Please rename to iconforge.config.cjs');
+  }
+
+  if (!configPath) return {};
+
+  try {
+    const fileUrl = 'file://' + configPath;
+    const module = await import(fileUrl);
+    return module.default || module;
+  } catch (e) {
+    console.error(`Error loading ${configPath} as a module, falling back to require.`, e);
+    try {
+      delete require.cache[require.resolve(configPath)];
+      return require(configPath);
+    } catch (e2) {
+      console.error(`Error loading ${configPath} with require.`, e2);
+      return {};
+    }
+  }
+}
 
 function escapeSelector(selector) {
-  return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
+  return selector.replace(/([ !"#$%&'()*+,./:;<=>?@[\]^`{|}~])/g, '\\$1');
 }
 
 const responsiveBreakpoints = {
@@ -79,14 +107,19 @@ function wrapMedia(css, mediaQuery) {
   return mediaQuery ? `${mediaQuery} { ${css} }` : css;
 }
 
-function buildCSS(content) {
+async function buildCSS(content) {
   fs.ensureDirSync(OUTPUT_DIR);
   const iconsMeta = JSON.parse(fs.readFileSync(META_ICONS, 'utf-8'));
   const stylesMeta = JSON.parse(fs.readFileSync(META_STYLES, 'utf-8'));
 
   const usedClasses = new Set();
+  const config = await loadConfig();
 
-  const regex = /class\s*=\s*["'`](.*?)["'`]/gms;
+  if (config.safelist && Array.isArray(config.safelist)) {
+    config.safelist.forEach(cls => usedClasses.add(cls));
+  }
+
+  const regex = /(?:class|className)\s*=\s*["'](.*?)["']/gms;
   let match;
   while ((match = regex.exec(content)) !== null) {
     match[1].split(/\s+/).forEach(cls => {
@@ -166,10 +199,10 @@ function buildCSS(content) {
         case 'is-contrast': properties = `filter: contrast(${value});`;break;
         case 'is-grayscale': properties = `filter: grayscale(${value});`;break;
         case 'is-saturate': properties = `filter: saturate(${value});`;break;
-        case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;}
-        case 'is-gradient-linear': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');properties = `background: linear-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
-        case 'is-gradient-radial': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');properties = `background: radial-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
-        case 'is-gradient-conic': {const safeVal = value.replace(/_/g, ' ').replace(/\"/g, '\\"');properties = `background: conic-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-fixed-bg': {const safeVal = value.replace(/"/g, '\"');properties = `position: fixed; top: 0; left: 0; width: 100dvw; height: 100dvh; z-index: -1; background-repeat: no-repeat; background-size: cover; background-image: url("${safeVal}");`;break;}
+        case 'is-gradient-linear': {const safeVal = value.replace(/_/g, ' ').replace(/"/g, '"');properties = `background: linear-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-gradient-radial': {const safeVal = value.replace(/_/g, ' ').replace(/"/g, '"');properties = `background: radial-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
+        case 'is-gradient-conic': {const safeVal = value.replace(/_/g, ' ').replace(/"/g, '"');properties = `background: conic-gradient(${safeVal}); background-clip: text;  -webkit-text-fill-color: transparent;`; break;}
         default:properties = '';
       }
       if (properties) {
@@ -232,28 +265,21 @@ function buildCSS(content) {
     }
   });
 
-  if (fs.existsSync(CONFIG_FILE)) {
-    try {
-      const config = require(CONFIG_FILE);
-      if (config.customCSS && Array.isArray(config.customCSS)) {
-        config.customCSS.forEach(customFile => {
-          const customFilePath = path.resolve(process.cwd(), customFile);
-          if (fs.existsSync(customFilePath)) {
-            cssOutput += fs.readFileSync(customFilePath, 'utf-8') + '\n';
-          } else {
-            console.warn(`Warning: Custom CSS file not found: ${customFilePath}`);
-          }
-        });
+  if (config.customCSS && Array.isArray(config.customCSS)) {
+    config.customCSS.forEach(customFile => {
+      const customFilePath = path.resolve(process.cwd(), customFile);
+      if (fs.existsSync(customFilePath)) {
+        cssOutput += fs.readFileSync(customFilePath, 'utf-8') + '\n';
+      } else {
+        console.warn(`Warning: Custom CSS file not found: ${customFilePath}`);
       }
-    } catch (e) {
-      console.error("Error reading or parsing iconforge.config.js for customCSS", e);
-    }
+    });
   }
 
   fs.writeFileSync(OUTPUT_CSS, cssOutput);
   console.log(`CSS generated: ${OUTPUT_CSS}`);
 
-  subsetWOFF2(Array.from(usedClasses).map(stripAllPrefixes));
+  await subsetWOFF2(Array.from(usedClasses).map(stripAllPrefixes));
 }
 
 function stripAllPrefixes(token) {
@@ -319,58 +345,78 @@ async function subsetWOFF2(usedClasses) {
 }
 
 function runInit() {
-  if (fs.existsSync(CONFIG_FILE)) {
-    console.log('iconforge.config.js already exists.');
+  if (fs.existsSync(CJS_CONFIG_PATH) || fs.existsSync(JS_CONFIG_PATH)) {
+    console.log('iconforge.config.js or .cjs already exists.');
     return;
   }
   const configContent = `module.exports = {
     content: [
       './**/*.{html,js,ts,vue,jsx,tsx}',
     ],
+    // Add any classes that are generated dynamically and not found by the parser.
+    safelist: [],
     customCSS: [],
 };
 `;
-  fs.writeFileSync(CONFIG_FILE, configContent);
-  console.log('iconforge.config.js created successfully.');
+  fs.writeFileSync(CJS_CONFIG_PATH, configContent);
+  console.log('iconforge.config.cjs created successfully.');
 }
 
-function getInputGlob(cliArgs) {
+async function getInputGlob(cliArgs, config) {
   if (cliArgs[1]) return cliArgs[1];
-  if (fs.existsSync(CONFIG_FILE)) {
-    try {
-      const config = require(CONFIG_FILE);
-      if (config.content && Array.isArray(config.content) && config.content.length > 0) {
-        return config.content;
-      }
-    } catch (e) {
-      console.error("Error reading or parsing iconforge.config.js", e);
-    }
+  if (config.content && Array.isArray(config.content) && config.content.length > 0) {
+    return config.content;
   }
   return ['**/*.{html,js,ts,vue,jsx,tsx}'];
 }
 
-function runBuild(inputGlob) {
+async function runBuild(inputGlob) {
   const patterns = [].concat(inputGlob);
   const files = patterns.flatMap(pattern => glob.sync(pattern, { nodir: true, ignore: ['node_modules/**'] }));
   let combinedContent = '';
   [...new Set(files)].forEach(file => {
     combinedContent += fs.readFileSync(file, 'utf-8') + '\n';
   });
-  buildCSS(combinedContent);
+  await buildCSS(combinedContent);
 }
 
-function runWatch(inputGlob) {
+async function runWatch(inputGlob) {
   console.log(`Watching for changes...`);
-  chokidar.watch(inputGlob, { ignored: ['node_modules/**'] }).on('change', () => runBuild(inputGlob));
+  const watcher = chokidar.watch(inputGlob, { ignored: ['node_modules/**'], ignoreInitial: true });
+  
+  const buildOnChange = async (filePath) => {
+    console.log(`File changed: ${filePath}. Rebuilding...`);
+    await runBuild(inputGlob);
+  };
+
+  watcher.on('change', buildOnChange);
+  watcher.on('add', buildOnChange);
+  watcher.on('unlink', buildOnChange);
 }
 
-const args = process.argv.slice(2);
-const mode = args[0] || 'build';
-if (mode === 'init') {
-  runInit();
-} else {
-  const inputGlob = getInputGlob(args);
-  if (mode === 'build') runBuild(inputGlob);
-  else if (mode === 'watch') runWatch(inputGlob);
-  else console.log(`Unknown command: ${mode}`);
+async function main() {
+    const args = process.argv.slice(2);
+    const mode = args[0] || 'build';
+
+    if (mode === 'init') {
+      runInit();
+      return;
+    }
+
+    const config = await loadConfig();
+    const inputGlob = await getInputGlob(args, config);
+
+    if (mode === 'build') {
+      await runBuild(inputGlob);
+    } else if (mode === 'watch') {
+      await runBuild(inputGlob);
+      await runWatch(inputGlob);
+    } else {
+      console.log(`Unknown command: ${mode}`);
+    }
 }
+
+main().catch(e => {
+    console.error("An unexpected error occurred:", e);
+    process.exit(1);
+});

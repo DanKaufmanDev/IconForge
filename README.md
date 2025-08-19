@@ -98,12 +98,12 @@ The `iconforge.config.js` file allows you to control which files are scanned for
 
 ```javascript
 module.exports = {
-    // Files to scan for icon classes
     content: [
-        './**/*.{html,js,ts,vue,jsx,tsx}',
+      './**/*.{html,js,ts,vue,jsx,tsx}',
     ],
-    // Custom CSS files to append to the output
-    customCSS: ['styles.css'],
+    // Add any classes that are generated dynamically and not found by the parser.
+    safelist: [""],
+    customCSS: [""],
 };
 ```
 
