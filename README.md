@@ -12,7 +12,7 @@
 
 IconForge is a performance-focused, utility-style icon library that lets you load **only the icons you need**.
 Powered by a JIT (Just-In-Time) compiler, IconForge tree-shakes unused icons, dynamically injects CSS at runtime,
-and delivers blazing-fast performance — whether you use it via CDN or IconForge CLI.
+and delivers blazing-fast performance whether you use it via CDN or IconForge CLI.
 
 ## Features
 
@@ -43,7 +43,7 @@ For a more robust, production-ready setup, you can install the IconForge CLI.
 
 **1. Initialize your project:**
 
-Run the `init` command to initialize the project and create a default `iconforge.config.js` file in your project root.
+Run the `init` command to initialize the project and create a default `iconforge.config.cjs` file in your project root.
 ```bash
 npx iconforged init
 ```
@@ -94,7 +94,7 @@ IconForge support arbitrary value's simply place the value between square bracke
 ```
 ## Configuration
 
-The `iconforge.config.js` file allows you to control which files are scanned for icon classes.
+The `iconforge.config.cjs` file allows you to control which files are scanned for icon classes.
 
 ```javascript
 module.exports = {
